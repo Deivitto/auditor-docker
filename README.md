@@ -35,6 +35,17 @@ Additionally, the image sets up a user environment for a user named `whitehat` a
 
 ## Installer Scripts
 
+Launch following scripts for fastly install packages
+```
+add2
+```
+
+or 
+
+```
+add2lbox
+```
+
 - py_developer_setup.sh: Installs Python packages (Pyevmasm, Py-solc-x, Vyper, Brownie)
 - certora_setup.sh: Installs Certora Prover, Java SDK 11, and sets up Certora key and solc path
 - advanced_tob_tools_setup.sh: Installs Trail of Bits tools (Manticore, Etheno)
