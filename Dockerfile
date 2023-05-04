@@ -102,7 +102,7 @@ RUN echo 'source ~/.cargo/env && \
 RUN echo 'curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     curl -L https://foundry.paradigm.xyz | bash && \
     source ~/.bashrc && \
-    export PATH="~/.foundry/bin:${PATH}" && \
+    export PATH="~/.foundry/bin:${PATH}" && source ~/.bashrc &&\
     foundryup' > /home/whitehat/scripts/cargo_foundry_installer.sh && \
     chmod +x /home/whitehat/scripts/cargo_foundry_installer.sh
 
@@ -118,7 +118,7 @@ RUN echo 'python3.9 -m pip install \
     brownie' > /home/whitehat/scripts/py_developer_setup.sh && \
     chmod +x /home/whitehat/scripts/py_developer_setup.sh
 
-# Create Foundry, Forge, Cast, Anvil, Chisel script
+# Create Echidna script
 RUN echo '#!/bin/bash\n\
     \n\
     echo "Installing brew and echidna..."\n\
