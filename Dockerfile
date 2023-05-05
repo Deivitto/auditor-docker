@@ -367,42 +367,42 @@ RUN echo '#!/bin/bash\n\
     exit\n\
     ;;\n\
     1)\n\
-    ./py_developer_setup.sh\n\
+    ./home/whitehat/scripts/py_developer_setup.sh\n\
     result="py_developer_setup.sh installed successfully!"\n\
     display_result "Result"\n\
     ;;\n\
     2)\n\
-    ./certora_setup.sh\n\
+    ./home/whitehat/scripts/certora_setup.sh\n\
     result="certora_setup.sh installed successfully!"\n\
     display_result "Result"\n\
     ;;\n\
     3)\n\
-    ./advanced_tob_tools_setup.sh\n\
+    ./home/whitehat/scripts/advanced_tob_tools_setup.sh\n\
     result="advanced_tob_tools_setup.sh installed successfully!"\n\
     display_result "Result"\n\
     ;;\n\
     4)\n\
-    ./noir_setup.sh\n\
+    ./home/whitehat/scripts/noir_setup.sh\n\
     result="noir_setup.sh installed successfully!"\n\
     display_result "Result"\n\
     ;;\n\
     5)\n\
-    ./circom_setup.sh\n\
+    ./home/whitehat/scripts/circom_setup.sh\n\
     result="circom_setup.sh installed successfully!"\n\
     display_result "Result"\n\
     ;;\n\
     6)\n\
-    ./cargo_foundry_installer.sh\n\
+    ./home/whitehat/scripts/cargo_foundry_installer.sh\n\
     result="cargo_foundry_installer.sh installed successfully!"\n\
     display_result "Result"\n\
     ;;\n\
     7)\n\
-    ./echidna_installer.sh\n\
+    ./home/whitehat/scripts/echidna_installer.sh\n\
     result="echidna_installer.sh installed successfully!"\n\
     display_result "Result"\n\
     ;;\n\
     8)\n\
-    ./mythril_install.sh\n\
+    ./home/whitehat/scripts/mythril_install.sh\n\
     result="mythril_install.sh installed successfully!"\n\
     display_result "Result"\n\
     ;;\n\
