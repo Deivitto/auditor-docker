@@ -344,7 +344,7 @@ RUN echo '#!/bin/bash\n\
     "5" "Install Circom" \\\n\
     "6" "Install Cargo + Foundry" \\\n\
     "7" "Install Echidna" \\\n\
-    "7" "Install Mythril" \\\n\
+    "8" "Install Mythril" \\\n\
     2>&1 1>&3)\n\
     exit_code=$?\n\
     exec 3>&-\n\
@@ -421,8 +421,7 @@ book_name="solidity_docs"\n\
 while [[ "$#" -gt 0 ]]; do\n\
   case $1 in\n\
     --book)\n\
-      book_name="$2"\n\
-      shift 2\n\
+      shift\n\
       ;;\n\
     --pdf-xdg)\n\
       pdf_viewer="xdg-open"\n\
@@ -476,7 +475,7 @@ SHELL ["/bin/bash", "-c"]
 # motd
 # Create the ASCII design for the Auditor Toolbox
 USER root
-RUN echo -e "\\nAUDITOR TOOLBOX\\n\\nhttps://github.com/misirov/auditor-docker/\\n\\nby\\n#       _             _ _ _                       \\n#      / \\  _   _  __| (_) |_ ___  _ __           \\n#     / _ \\| | | |/ _\` | | __/ _ \\| '\''__|          \\n#    / ___ \\ |_| | (_| | | || (_) | |             \\n#   /_/   \\_\\__,_|\\__,_|_|\\__\\___/|_|             \\n#              _____           _ _                \\n#             |_   _|__   ___ | | |__   _____  __ \\n#          _____| |/ _ \\ / _ \\| | '\''_ \\ / _ \\ \\/ / \\n#         |_____| | (_) | (_) | | |_) | (_) >  <  \\n#               |_|\\___/ \\___/|_|_.__/ \\\\___/_/\\_\\ \\n#                                                \\n\\nAuditor 2lbox\\nCreated by GitHub Deivitto\\nCollaborators: misirov, luksgrin\\n\\nSecurity Tools and Resources Installed:\\n\\n[PlaceholderLinks]\\n\\n## Some tools commands\\n- Foundry: forge\\n- Foundry Update: foundryup\\n- Slither: slither\\n- Echidna: echidna\\n- Mythril: myth\\n- Halmos: halmos\\n- Certora Prover: certoraRun\\n- Set Certora Key: certoraKey key\\n- Manticore: manticore\\n- Solc-select: solc-select\\n- Open last solity lang doc: solc-docs --book\\n\\nUse add2 or add2lbox to quick install auditor packages\\n" >> /etc/motd
+RUN echo -e "\\nAUDITOR TOOLBOX\\n\\nhttps://github.com/misirov/auditor-docker/\\n\\nby\\n#       _             _ _ _                       \\n#      / \\  _   _  __| (_) |_ ___  _ __           \\n#     / _ \\| | | |/ _\` | | __/ _ \\| '\''__|          \\n#    / ___ \\ |_| | (_| | | || (_) | |             \\n#   /_/   \\_\\__,_|\\__,_|_|\\__\\___/|_|             \\n#              _____           _ _                \\n#             |_   _|__   ___ | | |__   _____  __ \\n#          _____| |/ _ \\ / _ \\| | '\''_ \\ / _ \\ \\/ / \\n#         |_____| | (_) | (_) | | |_) | (_) >  <  \\n#               |_|\\___/ \\___/|_|_.__/ \\\\___/_/\\_\\ \\n#                                                \\n\\nAuditor 2lbox\\nCreated by GitHub Deivitto\\nCollaborators: misirov, luksgrin\\n\\nSecurity Tools and Resources Installed:\\n\\n- Foundry: forge\\n- Foundry Update: foundryup\\n- Slither: slither\\n- Echidna: echidna\\n- Mythril: myth\\n- Halmos: halmos\\n- Certora Prover: certoraRun\\n- Set Certora Key: certoraKey key\\n- Manticore: manticore\\n- Solc-select: solc-select\\n- Open last solity lang doc: solc-docs --book\\n\\nUse add2 or add2lbox to quick install auditor packages\\n" >> /etc/motd
 RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 RUN chown -R whitehat:whitehat /home/whitehat/
 USER whitehat
