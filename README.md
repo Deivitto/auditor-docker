@@ -10,6 +10,14 @@ Then just run
 docker run -it whitehat-machine 
 ```
 
+Fast command to install it:
+```
+git clone https://github.com/misirov/auditor-docker.git && \
+cd auditor-docker && \
+docker build -t whitehat-machine . && \
+docker run -it whitehat-machine
+```
+
 Default password: 
 ```
 ngmi
