@@ -73,11 +73,7 @@ RUN useradd -m -G sudo whitehat && \
     usermod --shell /bin/bash whitehat
 
 # Create the scripts directory
-RUN mkdir -p /home/whitehat/scripts && \
-# Set the owner and group of the scripts directory to whitehat
-chown -R whitehat:whitehat /home/whitehat/scripts && \
-# Set the permissions of the scripts directory to allow only the owner to read, write, and execute
-chmod -R 700 /home/whitehat/scripts
+RUN mkdir -p /home/whitehat/scripts
 
 # Create the 'add2' and 'add2lbox' scripts
 RUN echo '#!/bin/bash\n/home/whitehat/scripts/installer.sh' > /home/whitehat/add2 && \
@@ -125,7 +121,9 @@ RUN chown -R whitehat:whitehat /home/whitehat/
 # Move scripts inside the folder and give permissions
 COPY /scripts/*.sh /home/whitehat/scripts/
 COPY /scripts/readme.md /home/whitehat/scripts/readme.md
-RUN chmod +x /home/whitehat/scripts/*.sh
+RUN chmod +x /home/whitehat/scripts/*.sh && \
+# Set the owner and group of the scripts directory to whitehat
+chown -R whitehat:whitehat /home/whitehat/scripts
 USER whitehat
 
 # Add aliases
