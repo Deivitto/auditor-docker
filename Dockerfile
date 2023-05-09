@@ -29,7 +29,6 @@ RUN apt-get update && \
     procps \
     file \
     ca-certificates && \
-    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Add Ethereum and Yices PPA repositories and install packages
@@ -45,18 +44,12 @@ RUN add-apt-repository -y ppa:ethereum/ethereum && \
     python3-pip \
     python3.9-distutils \
     yices2 && \
-    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Install global npm packages
 RUN npm install --omit=dev --global --force \
-    embark \
-    @trailofbits/embark-contract-info \
     ganache \
-    truffle
-
-# Install pnpm
-RUN npm install --omit=dev --global --force \
+    truffle \
     pnpm
 
 # Install Julia
@@ -76,11 +69,10 @@ RUN useradd -m -G sudo whitehat && \
 RUN mkdir -p /home/whitehat/scripts
 
 # Create the 'add2' and 'add2lbox' scripts
-RUN echo '#!/bin/bash\n/home/whitehat/scripts/installer.sh' > /home/whitehat/add2 && \
-    echo '#!/bin/bash\n/home/whitehat/scripts/installer.sh' > /home/whitehat/add2lbox
+RUN echo '#!/bin/bash\n/home/whitehat/scripts/installer.sh' > /home/whitehat/add2lbox 
 
 # Make the scripts executable
-RUN chmod +x /home/whitehat/add2 /home/whitehat/add2lbox
+RUN chmod +x /home/whitehat/add2lbox
 
 # Change user and set preferences
 USER whitehat
@@ -101,22 +93,17 @@ RUN python3.9 -m pip install --no-cache-dir \
 #Vim Solidity plugins
 RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
 
-# Install all versions of solc and set the latest as default
-RUN solc-select install all && \
-    SOLC_VERSION=0.8.0 solc-select versions | head -n1 | xargs solc-select use
+# Install all 0.8 versions til May 9th
+RUN solc-select install 0.8.9 0.8.8 0.8.7 0.8.6 0.8.5 0.8.4 0.8.3 0.8.2 0.8.19 0.8.19 0.8.18 0.8.17 0.8.16 0.8.15 0.8.14 0.8.13 0.8.12 0.8.11 0.8.10 0.8.1 0.8.0 && \
+    solc-select use 0.8.19
 
 # Move the scripts to a directory in the PATH
-RUN mv /home/whitehat/add2 /home/whitehat/add2lbox /home/whitehat/.local/bin/
+RUN mv /home/whitehat/add2lbox /home/whitehat/.local/bin/
 
 # Set the default shell to bash
 SHELL ["/bin/bash", "-c"]
 
-# motd
-# Create the ASCII design for the Auditor Toolbox
 USER root
-# This part can be separated in a motd file, then copy pasted
-RUN echo -e "\\nAUDITOR TOOLBOX\\n\\nhttps://github.com/misirov/auditor-docker/\\n\\nby\\n#       _             _ _ _                       \\n#      / \\  _   _  __| (_) |_ ___  _ __           \\n#     / _ \\| | | |/ _\` | | __/ _ \\| '\''__|          \\n#    / ___ \\ |_| | (_| | | || (_) | |             \\n#   /_/   \\_\\__,_|\\__,_|_|\\__\\___/|_|             \\n#              _____           _ _                \\n#             |_   _|__   ___ | | |__   _____  __ \\n#          _____| |/ _ \\ / _ \\| | '\''_ \\ / _ \\ \\/ / \\n#         |_____| | (_) | (_) | | |_) | (_) >  <  \\n#               |_|\\___/ \\___/|_|_.__/ \\\\___/_/\\_\\ \\n#                                                \\n\\nAuditor 2lbox\\nCreated by GitHub Deivitto\\nCollaborators: misirov, luksgrin\\n\\nSecurity Tools and Resources Installed:\\n\\n- Foundry: forge\\n- Foundry Update: foundryup\\n- Slither: slither\\n- Echidna: echidna\\n- Mythril: myth\\n- Halmos: halmos\\n- Certora Prover: certoraRun\\n- Set Certora Key: certoraKey key\\n- Manticore: manticore\\n- Solc-select: solc-select\\n- Open last solity lang doc: solc-docs --book\\n\\nUse add2 or add2lbox to quick install auditor packages\\n" >> /etc/motd
-RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 RUN chown -R whitehat:whitehat /home/whitehat/
 # Move scripts inside the folder and give permissions
 COPY /scripts/*.sh /home/whitehat/scripts/
@@ -124,6 +111,10 @@ COPY /scripts/readme.md /home/whitehat/scripts/readme.md
 RUN chmod +x /home/whitehat/scripts/*.sh && \
 # Set the owner and group of the scripts directory to whitehat
 chown -R whitehat:whitehat /home/whitehat/scripts
+# Create the ASCII design for the Auditor Toolbox
+COPY motd /etc/motd
+# RUN echo -e "\\nAUDITOR TOOLBOX\\n\\nhttps://github.com/misirov/auditor-docker/\\n\\nby\\n#       _             _ _ _                       \\n#      / \\  _   _  __| (_) |_ ___  _ __           \\n#     / _ \\| | | |/ _\` | | __/ _ \\| '\''__|          \\n#    / ___ \\ |_| | (_| | | || (_) | |             \\n#   /_/   \\_\\__,_|\\__,_|_|\\__\\___/|_|             \\n#              _____           _ _                \\n#             |_   _|__   ___ | | |__   _____  __ \\n#          _____| |/ _ \\ / _ \\| | '\''_ \\ / _ \\ \\/ / \\n#         |_____| | (_) | (_) | | |_) | (_) >  <  \\n#               |_|\\___/ \\___/|_|_.__/ \\\\___/_/\\_\\ \\n#                                                \\n\\nAuditor 2lbox\\nCreated by GitHub Deivitto\\nCollaborators: misirov, luksgrin\\n\\nSecurity Tools and Resources Installed:\\n\\n- Foundry: forge\\n- Foundry Update: foundryup\\n- Slither: slither\\n- Echidna: echidna\\n- Mythril: myth\\n- Halmos: halmos\\n- Certora Prover: certoraRun\\n- Set Certora Key: certoraKey key\\n- Manticore: manticore\\n- Solc-select: solc-select\\n- Open last solity lang doc: solc-docs --book\\n\\nUse add2 or add2lbox to quick install auditor packages\\n" >> /etc/motd
+RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 USER whitehat
 
 # Add aliases
@@ -132,6 +123,7 @@ RUN echo "alias python3.9-pip='python3.9 -m pip'" >> ~/.bashrc && \
     echo "alias pip3='pip3.9'" >> ~/.bashrc && \
     echo 'alias certoraKey="~/scripts/certora_key_setup.sh"' >> ~/.bashrc && \
     echo "alias solc-docs='bash ~/scripts/solc_docs.sh'" >> ~/.bashrc && \
+    echo "alias add2='add2lbox'" >> ~/.bashrc && \
     source ~/.bashrc
 
 # ENTRYPOINT ["/bin/bash"] is used to set the default command for the container to start a new Bash shell.
