@@ -1,0 +1,1 @@
+curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y &&     curl -L https://foundry.paradigm.xyz | bash &&     source ~/.bashrc &&     export PATH="~/.foundry/bin:${PATH}" &&     foundryup
