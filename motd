@@ -1,0 +1,38 @@
+
+AUDITOR TOOLBOX
+
+https://github.com/misirov/auditor-docker/
+
+by
+#       _             _ _ _                       
+#      / \  _   _  __| (_) |_ ___  _ __           
+#     / _ \| | | |/ _` | | __/ _ \| '\''__|          
+#    / ___ \ |_| | (_| | | || (_) | |             
+#   /_/   \_\__,_|\__,_|_|\__\___/|_|             
+#              _____           _ _                
+#             |_   _|__   ___ | | |__   _____  __ 
+#          _____| |/ _ \ / _ \| | '\''_ \ / _ \ \/ / 
+#         |_____| | (_) | (_) | | |_) | (_) >  <  
+#               |_|\___/ \___/|_|_.__/ \___/_/\_\ 
+#                                                
+
+Auditor 2lbox
+Created by GitHub Deivitto
+Collaborators: misirov, luksgrin
+
+Security Tools and Resources Installed:
+
+- Foundry: forge
+- Foundry Update: foundryup
+- Slither: slither
+- Echidna: echidna
+- Mythril: myth
+- Halmos: halmos
+- Certora Prover: certoraRun
+- Set Certora Key: certoraKey key
+- Manticore: manticore
+- Solc-select: solc-select
+- Open last solity lang doc: solc-docs --book
+
+Use add2 or add2lbox to quick install auditor packages
+
