@@ -22,7 +22,7 @@ run_with_progress() {
     {
         while kill -0 $pid 2>/dev/null; do
             cat $temp_output
-            sleep 1
+            sleep 4
         done
         wait $pid
     } | dialog --title "Installing $title, please wait..." --progressbox 20 80
