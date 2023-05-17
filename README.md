@@ -12,6 +12,7 @@ docker run -it whitehat-machine
 
 Fast command to install it:
 ```
+rm -rf auditor-docker && \
 git clone https://github.com/misirov/auditor-docker.git && \
 cd auditor-docker && \
 docker build -t whitehat-machine . && \
