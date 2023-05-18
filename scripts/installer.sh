@@ -2,7 +2,7 @@
 
 DIALOG_CANCEL=1
 DIALOG_ESC=255
-    
+
 display_result() {
     dialog --title "$1" \
     --no-collapse \
@@ -29,7 +29,7 @@ run_with_progress() {
 
     rm -f $temp_output
 }
-    
+
 while true; do
 exec 3>&1
 selection=$(dialog \
@@ -110,3 +110,4 @@ case $selection in
 esac
 
 done
+
