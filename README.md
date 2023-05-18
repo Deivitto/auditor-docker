@@ -16,7 +16,7 @@ rm -rf auditor-docker && \
 git clone https://github.com/misirov/auditor-docker.git && \
 cd auditor-docker && \
 docker build -t whitehat-machine . && \
-docker run -it whitehat-machine
+docker run -it -d --name devops199 whitehat-machine
 ```
 
 Default password: 
