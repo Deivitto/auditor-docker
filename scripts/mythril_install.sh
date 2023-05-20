@@ -1,4 +1,5 @@
 #!/bin/bash
+    cd /home/whitehat
     
     python3.9 -m venv mythril_env
     
