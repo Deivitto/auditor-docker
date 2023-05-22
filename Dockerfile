@@ -13,7 +13,6 @@ RUN apt-get update && \
     vim \
     nano \
     yarn \
-    npm \
     z3 \
     libz3-dev \
     ripgrep \
@@ -46,6 +45,29 @@ RUN add-apt-repository -y ppa:ethereum/ethereum && \
     yices2 && \
     rm -rf /var/lib/apt/lists/*
 
+# Set up the user environment
+RUN useradd -m -G sudo whitehat && \
+    echo 'whitehat ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+    echo 'whitehat:ngmi' | chpasswd && \
+    usermod --shell /bin/bash whitehat
+    
+# Change user and set preferences
+USER whitehat
+ENV HOME="/home/whitehat"
+ENV SCRIPTS="/home/whitehat/scripts"
+ENV PATH="${PATH}:${HOME}/.local/bin"
+WORKDIR /home/whitehat
+
+# Install NVM
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
+    && . $HOME/.nvm/nvm.sh \
+    && nvm install --lts \
+    && nvm alias default lts/* \
+    && nvm use default
+
+# Update path to include nvm binaries
+ENV PATH="/root/.nvm/versions/node/$(nvm version)/bin/:${PATH}"
+
 # Install global npm packages
 RUN npm install --omit=dev --global --force \
     ganache \
@@ -59,11 +81,6 @@ RUN curl -fsSL https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.1-
     rm julia.tar.gz && \
     ln -s /opt/julia/bin/julia /usr/local/bin/julia
 
-# Set up the user environment
-RUN useradd -m -G sudo whitehat && \
-    echo 'whitehat ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
-    echo 'whitehat:ngmi' | chpasswd && \
-    usermod --shell /bin/bash whitehat
 
 # Create the scripts directory
 RUN mkdir -p /home/whitehat/scripts
@@ -74,12 +91,6 @@ RUN echo '#!/bin/bash\n/home/whitehat/scripts/installer.sh' > /home/whitehat/add
 # Make the scripts executable
 RUN chmod +x /home/whitehat/add2lbox
 
-# Change user and set preferences
-USER whitehat
-ENV HOME="/home/whitehat"
-ENV SCRIPTS="/home/whitehat/scripts"
-ENV PATH="${PATH}:${HOME}/.local/bin"
-WORKDIR /home/whitehat
 
 # Install Python packages and clean up cache
 RUN python3.9 -m pip install --no-cache-dir pip setuptools wheel
@@ -94,8 +105,8 @@ RUN python3.9 -m pip install --no-cache-dir \
 RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
 
 # Install all 0.8 versions til May 9th
-RUN solc-select install 0.8.9 0.8.8 0.8.7 0.8.6 0.8.5 0.8.4 0.8.3 0.8.2 0.8.19 0.8.19 0.8.18 0.8.17 0.8.16 0.8.15 0.8.14 0.8.13 0.8.12 0.8.11 0.8.10 0.8.1 0.8.0 && \
-    solc-select use 0.8.19
+RUN solc-select install 0.8.4 0.8.7 0.8.19 0.8.18 0.8.17 0.8.16 0.8.20 0.8.14 0.8.13 0.8.12 0.8.0 && \
+    solc-select use 0.8.20
 
 # Move the scripts to a directory in the PATH
 RUN mv /home/whitehat/add2lbox /home/whitehat/.local/bin/
