@@ -77,7 +77,12 @@ RUN . "$NVM_DIR/nvm.sh" && \
     node_version=$(node --version) && \
     echo "PATH=\"/home/whitehat/.nvm/versions/node/$node_version/bin:${PATH}\"" >> /home/whitehat/.bashrc && \
     . /home/whitehat/.bashrc && \
-    npm install --omit=dev --global --force ganache truffle pnpm
+    npm install --omit=dev --global --force ganache truffle pnpm && \
+    # Install Yarn
+    . "$NVM_DIR/nvm.sh" && \
+    curl -o- -L https://yarnpkg.com/install.sh | bash \
+    # Update PATH for Yarn global binaries
+    echo "export PATH=\"$(yarn global bin):$PATH\"" >> /home/whitehat/.bashrc
 
 # Create the scripts directory
 RUN mkdir -p /home/whitehat/scripts
@@ -98,8 +103,12 @@ RUN python3.9 -m pip install --no-cache-dir \
     slither-analyzer \
     halmos
 
-#Vim Solidity plugins
-RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
+#Vim Solidity plugins + pessimistic io slitherin
+RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity && \
+# Clone the slitherin repository and run the setup script
+    git clone https://github.com/pessimistic-io/slitherin.git ~/.slitherin && \
+    cd ~/.slitherin && \
+    python3.9 setup.py develop
 
 # Install some popular 0.8 versions
 RUN solc-select install 0.8.4 0.8.7 0.8.19 0.8.18 0.8.17 0.8.16 0.8.20 0.8.14 0.8.13 0.8.12 0.8.0 && \
