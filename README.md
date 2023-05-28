@@ -29,9 +29,7 @@ ngmi
 This Dockerfile creates an Ubuntu-based image with various tools and libraries for auditing Ethereum smart contracts. The image includes:
 
 - Ubuntu Jammy base image
-- Build tools, libraries, and common utilities
-- Ethereum and Yices PPA repositories
-- Node.js packages (Embark, Ganache, Truffle, etc.)
+- Ethereum related tools, libraries, dependencies, packages and common utilities
 - Julia
 - Rust, Cargo, and Foundry
 - Noir language (Nargo)
@@ -39,6 +37,12 @@ This Dockerfile creates an Ubuntu-based image with various tools and libraries f
 - Python developer tools (Pyevmasm, Py-solc-x, Vyper, Brownie)
 - Trail of Bits tools (Slither, Echidna, Manticore, Etheno)
 - Certora Prover and Java SDK 11
+- Node Version Manager (NVM) + yarn + node + pnpm 
+- Dependencies of [Spearbit Report Generator](https://github.com/spearbit-audits/report-generator-template)
+- Pessimistic io slither detectors
+- Vim solidity
+- Solc-select
+- Mythril
 
 Additionally, the image sets up a user environment for a user named `whitehat` and includes several installer scripts to simplify the installation of various tools and libraries.
 
@@ -61,5 +65,7 @@ add2lbox
 - noir_setup.sh: Installs Noir language (Nargo)
 - circom_setup.sh: Installs Circom
 - echidna_installer.sh: Installs Homebrew and Echidna
-
+- cargo_foundry_installer.sh   
+- mythril_install.sh
+- certora_key_setup.sh Sets the key (first parameter you send to the script)
 To use these installer scripts, run the interactive script `installer.sh` using the command `add2lbox` or `./scripts/installer.sh`.
