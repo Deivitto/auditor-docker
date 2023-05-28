@@ -121,7 +121,7 @@ RUN mv /home/whitehat/add2lbox /home/whitehat/.local/bin/
 SHELL ["/bin/bash", "-c"]
 
 USER root
-RUN chown -R whitehat:whitehat /home/whitehat/
+# RUN chown -R whitehat:whitehat /home/whitehat/
 # Move scripts inside the folder and give permissions
 COPY /scripts/*.sh /home/whitehat/scripts/
 COPY /scripts/readme.md /home/whitehat/scripts/readme.md
