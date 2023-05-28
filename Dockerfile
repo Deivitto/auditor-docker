@@ -26,6 +26,8 @@ RUN apt-get update && \
     dialog \
     procps \
     file \
+    pandoc \
+    texlive \
     ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
@@ -95,11 +97,10 @@ RUN chmod +x /home/whitehat/add2lbox
 
 # Install Python packages and clean up cache
 RUN python3.9 -m pip install --no-cache-dir pip setuptools wheel
-
 # Install python tools
 RUN python3.9 -m pip install --no-cache-dir \
     solc-select \
-    slither-analyzer \
+    slither-analyzer pandocfilters pygments PyGithub \ 
     halmos && \
     # Clone the slitherin repository and run the setup script
     git clone https://github.com/pessimistic-io/slitherin.git ~/.slitherin && \
