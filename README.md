@@ -1,11 +1,12 @@
 # Auditor-Toolbox
 ## Example build 
-Clone the repo
+Clone the repo and cd in
 ```
-git clone https://github.com/misirov/auditor-docker.git
+git clone https://github.com/misirov/auditor-docker.git && \
+cd auditor-docker
 ```
 
-In a folder with the Dockerfile
+In the folder with the Dockerfile
 ```
 docker build -t whitehat-machine .  
 ```
