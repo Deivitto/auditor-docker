@@ -28,7 +28,7 @@ ngmi
 
 This Dockerfile creates an Ubuntu-based image with various tools and libraries for auditing Ethereum smart contracts. The image includes:
 
-- Ubuntu Jammy base image
+- Ubuntu Jammy base image (22.04)
 - Ethereum related tools, libraries, dependencies, packages and common utilities
 - Julia
 - Rust, Cargo, and Foundry
