@@ -85,3 +85,18 @@ add2lbox
 - mythril_install.sh
 - certora_key_setup.sh Sets the key (first parameter you send to the script)
 To use these installer scripts, run the interactive script `installer.sh` using the command `add2lbox` or `./scripts/installer.sh`.
+
+# Known issues and fixes
+## Parent system out of time
+**Issue**: Exit code 100
+
+**Breaks**: on building, not even 2 seconds
+
+```
+ERROR: failed to solve: process "/bin/sh -c apt-get update &&     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends     build-essential     curl     git     vim     nano     z3     libz3-dev     ripgrep     gawk     libssl-dev     sudo     wget     software-properties-common     libudev-dev     locales     gpg-agent     dialog     procps     file     pandoc     texlive     ca-certificates &&     rm -rf /var/lib/apt/lists/*" did not complete successfully: exit code: 100
+```
+
+Launch next command to sync with google server your time
+```
+sudo date -s "$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')
+```
