@@ -34,6 +34,12 @@ docker run -it -d --name devops199 whitehat-machine
 
 NOTE: This command uses -d to run the docker machine in the background, this is to use VSCode docker extension. After installing the extension, run command palette and type "Attach to running container...". This command will attach the instance of the machine to the VSCode instance.
 
+## To launch again your machine
+Run `docker start` with the name of your machine. If used the 1 line command, this will be
+```
+docker start devops199
+```
+
 ## Credentials
 Default password: 
 ```
@@ -41,6 +47,12 @@ ngmi
 ```
 
 # Auditor Toolbox for Ethereum Smart Contracts
+
+Note: Right now: Rust, Cargo, and Foundry comes in the form of installer, after running docker for the first time, launch:
+```
+add2
+```
+Select first option, install. And now you have foundry!
 
 This Dockerfile creates an Ubuntu-based image with various tools and libraries for auditing Ethereum smart contracts. The image includes:
 
