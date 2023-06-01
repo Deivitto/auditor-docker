@@ -16,6 +16,11 @@ Then just run
 docker run -it whitehat-machine 
 ```
 
+or to run current folder inside the docker machine
+```
+docker run -it -v "$PWD":/code whitehat-machine
+```
+
 Fast command to install it:
 ```
 rm -rf auditor-docker && \
