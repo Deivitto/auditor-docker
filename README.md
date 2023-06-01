@@ -1,5 +1,5 @@
 # Auditor-Toolbox
-## Example build 
+## Basic build 
 Clone the repo and cd in
 ```
 git clone https://github.com/misirov/auditor-docker.git && \
@@ -16,11 +16,13 @@ Then just run
 docker run -it whitehat-machine 
 ```
 
-or to run current folder inside the docker machine
+## Share a folder
+To run current folder inside the docker machine launch next command. Now, at the docker machine, a folder called /code will include current folder from parent operating system
 ```
 docker run -it -v "$PWD":/code whitehat-machine
 ```
 
+## 1 line command
 Fast command to install it:
 ```
 rm -rf auditor-docker && \
@@ -30,6 +32,9 @@ docker build -t whitehat-machine . && \
 docker run -it -d --name devops199 whitehat-machine
 ```
 
+NOTE: This command uses -d to run the docker machine in the background, this is to use VSCode docker extension. After installing the extension, run command palette and type "Attach to running container...". This command will attach the instance of the machine to the VSCode instance.
+
+## Credentials
 Default password: 
 ```
 ngmi
