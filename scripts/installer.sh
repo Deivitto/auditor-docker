@@ -37,7 +37,7 @@ selection=$(dialog \
     --title "Menu" \
     --clear \
     --cancel-label "Exit" \
-    --menu "Please select an option:" 0 0 8 \
+    --menu "Please select an option:" 0 0 9 \
     "1" "Install Cargo + Foundry" \
     "2" "Install Echidna" \
     "3" "Install Certora Prover + Java SDK 11 (requirement)" \
@@ -46,6 +46,7 @@ selection=$(dialog \
     "6" "Install Noir (Nargo) (Needs Cargo (1))" \
     "7" "Install Circom" \
     "8" "Install Python Developer Tools" \
+    "9" "Install VS Code Audit Extensions" \
     2>&1 1>&3)
 exit_code=$?
 exec 3>&-
@@ -107,7 +108,11 @@ case $selection in
         result="py_developer_setup.sh installed successfully!"
         display_result "Result"
     ;;
+    9)
+        run_with_progress "/home/whitehat/scripts/vscode_audit_extensions.sh" "VS Code Audit Extensions"
+        result="vscode_audit_extensions.sh installed successfully!"
+        display_result "Result"
+    ;;
 esac
 
 done
-
