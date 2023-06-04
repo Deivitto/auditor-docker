@@ -112,3 +112,20 @@ Launch next command to sync with google server your time and build again
 ```
 sudo date -s "$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')
 ```
+## `code` not working
+**Issue**: `code` command not found
+
+**Breaks**: on use. Doesn't recognize code
+
+Use this command to append to the file .bashrc (or just copy paste the content inside to the file
+```
+echo '
+VSCODE_SSH_BIN=$(echo "$BROWSER" | sed -e 's/\/helpers\/browser.sh//g')
+alias code='$VSCODE_SSH_BIN/remote-cli/code'' >> ~/.bashrc 
+```
+
+Then source it
+```
+source ~/.bashrc 
+```
+
