@@ -26,6 +26,7 @@ RUN apt-get update && \
     dialog \
     procps \
     file \
+    openssh-client \
     pandoc \
     texlive \
     ca-certificates && \
