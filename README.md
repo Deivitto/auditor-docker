@@ -1,4 +1,8 @@
 # Auditor-Toolbox
+## Intro
+This auditor toolbox, intends to be a public repo where different toolboxs will araise for different goals and be in a 1 click install way. 
+
+Actually, it's en alpha general version. I would like to keep it updated with new tools, new version and everything, feel free to ping me or suggest new improvements ^~^. 
 
 ## Index
 
