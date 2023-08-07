@@ -136,9 +136,8 @@ RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 USER whitehat
 
 # Add aliases
-RUN echo "alias python3.9-pip='python3.9 -m pip'" >> ~/.bashrc && \
-    echo "alias python3='python3.9'" >> ~/.bashrc && \
-    echo "alias pip3='pip3.9'" >> ~/.bashrc && \
+RUN echo "alias python3='python3.9'" >> ~/.bashrc && \
+    echo "alias pip3='python3 -m pip'" >> ~/.bashrc && \
     echo 'alias certoraKey="~/scripts/certora_key_setup.sh"' >> ~/.bashrc && \
     echo "alias solc-docs='bash ~/scripts/solc_docs.sh'" >> ~/.bashrc && \
     echo "alias add2='add2lbox'" >> ~/.bashrc && \
