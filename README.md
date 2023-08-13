@@ -89,27 +89,29 @@ Select the option you want to install and voila, you're all set!
 
 ## Features
 ### Base Setup:
-- Operating System: Ubuntu Jammy (22.04)
-- Utilities: Git, Curl/wget, gawk/ripgrep, z3, pandoc, openssh-client, texlive, and Vim with solidity plugins.
+- **Operating System**: Ubuntu Jammy (22.04)
+- **Utilities**: Git, Curl/wget, gawk/ripgrep, z3, pandoc, openssh-client, texlive, and Vim with solidity plugins.
 ### Languages & Frameworks:
-- Python: Version 3.9, with developer tools including Pyevmasm, Py-solc-x, Vyper, and Brownie.
-- Rust: Comprehensive setup with Cargo, Heimdall, Forge, Anvil, Cast, and Halmos.
-- Julia: Built-in support.
-- Noir: Support for the Noir language (Nargo).
-- Circom: Framework for zkSNARK circuits.
+- **Python**: Version 3.9, with developer tools including Pyevmasm, Py-solc-x, Vyper, and Brownie.
+- **Rust**: Comprehensive setup with Cargo, Heimdall, Forge, Anvil, Cast, and Halmos.
+- **Julia**: Built-in support.
+- **Noir**: Support for the Noir language (Nargo).
+- **Circom**: Framework for zkSNARK circuits.
 ###  Ethereum Development:
-- Ethereum Utilities: ethereum.
-- Trail of Bits: A suite of tools including Slither, Echidna, Manticore, and Etheno.
-- Certora: Prover tool.
-- Consensys: Mythril for smart contract analysis.
-- Solc-select: Easily switch between different versions of Solidity compilers.
+- **Ethereum Utilities**: ethereum.
+- **Trail of Bits**: A suite of tools including Slither, Echidna, Manticore, and Etheno.
+- **Certora**: Prover tool.
+- **Consensys**: Mythril for smart contract analysis.
+- **Solc-select**: Easily switch between different versions of Solidity compilers.
 ### Node.js Development:
-- NVM: Node Version Manager to switch between different Node.js versions.
-- Node: Long Term Support (LTS) version.
-- Package Managers: npm, yarn, and pnpm.
+- **NVM**: Node Version Manager to switch between different Node.js versions.
+- **Node**: Long Term Support (LTS) version.
+- **Package Managers**: npm, yarn, and pnpm.
 ### Other Features:
-- Pessimistic IO: Specialized slither detectors.
-- Spearbit: Dependencies for [Spearbit Report Generator](https://github.com/spearbit-audits/report-generator-template)
+- **Pessimistic IO**: Specialized slither detectors.
+- **Spearbit**: Dependencies for [Spearbit Report Generator](https://github.com/spearbit-audits/report-generator-template)
+
+
 
 Additionally, the image sets up an environment for a user named `whitehat` and includes several installer scripts to simplify the installation of various tools and libraries.
 
