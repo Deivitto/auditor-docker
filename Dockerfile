@@ -135,6 +135,7 @@ USER root
 # Move scripts inside the folder and give permissions
 COPY /scripts/*.sh /home/whitehat/scripts/
 COPY /scripts/readme.md /home/whitehat/scripts/readme.md
+COPY /templates/ /home/whitehat/scripts/templates/
 RUN chmod +x /home/whitehat/scripts/*.sh && \
     # Set the owner and group of the scripts directory to whitehat
     chown -R whitehat:whitehat /home/whitehat/scripts
