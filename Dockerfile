@@ -30,6 +30,7 @@ RUN apt-get update && \
     pandoc \
     texlive \
     ca-certificates && \
+    pkg-config && \
     rm -rf /var/lib/apt/lists/*
 
 # Add Ethereum and Yices PPA repositories and install packages
@@ -86,6 +87,15 @@ RUN . "$NVM_DIR/nvm.sh" && \
     # Update PATH for Yarn global binaries
     echo "export PATH=\"$(yarn global bin):$PATH\"" >> /home/whitehat/.bashrc
 
+# Install cargo, rust, and foundry
+RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+    curl -L https://foundry.paradigm.xyz | bash  && \
+    curl -L http://get.heimdall.rs | bash
+
+ENV PATH="/home/whitehat/.foundry/bin:${PATH}"
+
+RUN foundryup
+
 # Create the scripts directory
 RUN mkdir -p /home/whitehat/scripts
 
@@ -94,7 +104,6 @@ RUN echo '#!/bin/bash\n/home/whitehat/scripts/installer.sh' > /home/whitehat/add
 
 # Make the scripts executable
 RUN chmod +x /home/whitehat/add2lbox
-
 
 # Install Python packages and clean up cache
 RUN python3.9 -m pip install --no-cache-dir pip setuptools wheel
@@ -112,8 +121,8 @@ RUN python3.9 -m pip install --no-cache-dir \
 RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
 
 # Install some popular 0.8 versions
-RUN solc-select install 0.8.19 0.8.18 0.8.17 0.8.16 0.8.20 && \
-    solc-select use 0.8.20
+RUN solc-select install 0.8.20 0.8.19 0.8.18 0.8.17 0.8.16  && \
+    solc-select use 0.8.19
 
 # Move the scripts to a directory in the PATH
 RUN mv /home/whitehat/add2lbox /home/whitehat/.local/bin/
