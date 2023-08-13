@@ -77,36 +77,47 @@ ngmi
 
 # Auditor Toolbox for Ethereum Smart Contracts
 
->Note: Right now Rust, Cargo, and Foundry bundled in an installer. After running docker for the first time, launch:
+Easily deploy an auditing environment for Ethereum smart contracts using this Docker image.
+
+### Quick Start
+
+Execute the add2 command:
 
 ```bash
 add2
 ```
-Select the first option and install: now you have foundry!
 
-This Dockerfile creates an Ubuntu-based image with various tools and libraries for auditing Ethereum smart contracts. The image includes:
+Select the option you want to install and voila, you're all set!
 
-- Ubuntu Jammy base image (22.04)
-- Ethereum related tools, libraries, dependencies, packages and common utilities
-- Julia
-- Rust, Cargo, and Foundry
-- Noir language (Nargo)
-- Circom
-- Python developer tools (Pyevmasm, Py-solc-x, Vyper, Brownie)
-- Trail of Bits tools (Slither, Echidna, Manticore, Etheno)
-- Certora Prover and Java SDK 11
-- Node Version Manager (NVM) + yarn + node + pnpm 
-- Dependencies of [Spearbit Report Generator](https://github.com/spearbit-audits/report-generator-template)
-- Pessimistic io slither detectors
-- Vim solidity
-- Solc-select
-- Mythril
+## Features
+### Base Setup:
+- Operating System: Ubuntu Jammy (22.04)
+- Utilities: Git, Curl/wget, gawk/ripgrep, z3, pandoc, openssh-client, texlive, and Vim with solidity plugins.
+### Languages & Frameworks:
+- Python: Version 3.9, with developer tools including Pyevmasm, Py-solc-x, Vyper, and Brownie.
+- Rust: Comprehensive setup with Cargo, Heimdall, Forge, Anvil, Cast, and Halmos.
+- Julia: Built-in support.
+- Noir: Support for the Noir language (Nargo).
+- Circom: Framework for zkSNARK circuits.
+###  Ethereum Development:
+- Ethereum Utilities: ethereum.
+- Trail of Bits: A suite of tools including Slither, Echidna, Manticore, and Etheno.
+- Certora: Prover tool.
+- Consensys: Mythril for smart contract analysis.
+- Solc-select: Easily switch between different versions of Solidity compilers.
+### Node.js Development:
+- NVM: Node Version Manager to switch between different Node.js versions.
+- Node: Long Term Support (LTS) version.
+- Package Managers: npm, yarn, and pnpm.
+### Other Features:
+- Pessimistic IO: Specialized slither detectors.
+- Spearbit: Dependencies for [Spearbit Report Generator](https://github.com/spearbit-audits/report-generator-template)
 
 Additionally, the image sets up an environment for a user named `whitehat` and includes several installer scripts to simplify the installation of various tools and libraries.
 
 ## Installer Scripts
 
-Launch following scripts for fastly install packages
+The toolbox includes scripts to fast install multiple packages, utilities or dependencies that maybe not all auditors but a considerable part may use. To launch the install script:
 
 ```bash
 add2
@@ -117,18 +128,6 @@ or
 ```bash
 add2lbox
 ```
-
-- `$HOME/scripts/py_developer_setup.sh`: Installs Python packages (Pyevmasm, Py-solc-x, Vyper, Brownie)
-- `$HOME/scripts/certora_setup.sh`: Installs Certora Prover, Java SDK 11, and sets up Certora key and `solc` path
-- `$HOME/scripts/advanced_tob_tools_setup.sh`: Installs Trail of Bits tools (Manticore, Etheno)
-- `$HOME/scripts/noir_setup.sh`: Installs Noir language (Nargo)
-- `$HOME/scripts/circom_setup.sh`: Installs Circom
-- `$HOME/scripts/echidna_installer.sh`: Installs Homebrew and Echidna
-- `$HOME/scripts/cargo_foundry_installer.sh`
-- `$HOME/scripts/mythril_install.sh`
-- `$HOME/scripts/certora_key_setup.sh`: Sets the key needed to run Certora Prover, provided as the first parameter to the script.
-
-To use these installer scripts, run the interactive script `installer.sh` using the command `add2lbox` or `$HOME/scripts/installer.sh`.
 
 # Troubleshooting
 ## Parent system out of time
