@@ -37,16 +37,15 @@ selection=$(dialog \
     --title "Menu" \
     --clear \
     --cancel-label "Exit" \
-    --menu "Please select an option:" 0 0 9 \
-    "1" "Install Cargo + Foundry" \
-    "2" "Install Echidna" \
-    "3" "Install Certora Prover + Java SDK 11 (requirement)" \
-    "4" "Install Mythril" \
-    "5" "Install Manticore + Etheno" \
-    "6" "Install Noir (Nargo) (Needs Cargo (1))" \
-    "7" "Install Circom" \
-    "8" "Install Python Developer Tools" \
-    "9" "Install VS Code Audit Extensions" \
+    --menu "Please select an option:" 0 0 8 \
+    "1" "Install Echidna" \
+    "2" "Install Certora Prover + Java SDK 11 (requirement)" \
+    "3" "Install Mythril" \
+    "4" "Install Manticore + Etheno" \
+    "5" "Install Noir (Nargo)" \
+    "6" "Install Circom" \
+    "7" "Install Python Developer Tools" \
+    "8" "Install VS Code Audit Extensions" \
     2>&1 1>&3)
 exit_code=$?
 exec 3>&-
@@ -69,46 +68,41 @@ case $selection in
         exit
     ;;
     1)
-        run_with_progress "/home/whitehat/scripts/cargo_foundry_installer.sh" "Cargo + Foundry"
-        result="cargo_foundry_installer.sh installed successfully!"
-        display_result "Result"
-    ;;
-    2)
         run_with_progress "/home/whitehat/scripts/echidna_installer.sh" "Echidna"
         result="echidna_installer.sh installed successfully!"
         display_result "Result"
     ;;
-    3)
+    2)
         run_with_progress "/home/whitehat/scripts/certora_setup.sh" "Certora Prover + Java SDK 11"
         result="certora_setup.sh installed successfully!"
         display_result "Result"
     ;;
-    4)
+    3)
         run_with_progress "/home/whitehat/scripts/mythril_install.sh" "Mythril"
         result="mythril_install.sh installed successfully!"
         display_result "Result"
     ;;
-    5)
+    4)
         run_with_progress "/home/whitehat/scripts/advanced_tob_tools_setup.sh" "Manticore + Etheno"
         result="advanced_tob_tools_setup.sh installed successfully!"
         display_result "Result"
     ;;
-    6)
+    5)
         run_with_progress "/home/whitehat/scripts/noir_setup.sh" "Noir (Nargo)"
         result="noir_setup.sh installed successfully!"
         display_result "Result"
     ;;
-    7)
+    6)
         run_with_progress "/home/whitehat/scripts/circom_setup.sh" "Circom"
         result="circom_setup.sh installed successfully!"
         display_result "Result"
     ;;
-    8)
+    7)
         run_with_progress "/home/whitehat/scripts/py_developer_setup.sh" "Python Developer Tools"
         result="py_developer_setup.sh installed successfully!"
         display_result "Result"
     ;;
-    9)
+    8)
         run_with_progress "/home/whitehat/scripts/vscode_audit_extensions.sh" "VS Code Audit Extensions"
         result="vscode_audit_extensions.sh installed successfully!"
         display_result "Result"
