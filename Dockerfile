@@ -112,7 +112,7 @@ RUN python3.9 -m pip install --no-cache-dir \
 RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
 
 # Install some popular 0.8 versions
-RUN solc-select install 0.8.4 0.8.7 0.8.19 0.8.18 0.8.17 0.8.16 0.8.20 0.8.14 0.8.13 0.8.12 0.8.0 && \
+RUN solc-select install 0.8.19 0.8.18 0.8.17 0.8.16 0.8.20 && \
     solc-select use 0.8.20
 
 # Move the scripts to a directory in the PATH
@@ -131,7 +131,7 @@ RUN chmod +x /home/whitehat/scripts/*.sh && \
     chown -R whitehat:whitehat /home/whitehat/scripts
 # Create the ASCII design for the Auditor Toolbox
 COPY motd /etc/motd
-# RUN echo -e "\\nAUDITOR TOOLBOX\\n\\nhttps://github.com/misirov/auditor-docker/\\n\\nby\\n#       _             _ _ _                       \\n#      / \\  _   _  __| (_) |_ ___  _ __           \\n#     / _ \\| | | |/ _\` | | __/ _ \\| '\''__|          \\n#    / ___ \\ |_| | (_| | | || (_) | |             \\n#   /_/   \\_\\__,_|\\__,_|_|\\__\\___/|_|             \\n#              _____           _ _                \\n#             |_   _|__   ___ | | |__   _____  __ \\n#          _____| |/ _ \\ / _ \\| | '\''_ \\ / _ \\ \\/ / \\n#         |_____| | (_) | (_) | | |_) | (_) >  <  \\n#               |_|\\___/ \\___/|_|_.__/ \\\\___/_/\\_\\ \\n#                                                \\n\\nAuditor 2lbox\\nCreated by GitHub Deivitto\\nCollaborators: misirov, luksgrin\\n\\nSecurity Tools and Resources Installed:\\n\\n- Foundry: forge\\n- Foundry Update: foundryup\\n- Slither: slither\\n- Echidna: echidna\\n- Mythril: myth\\n- Halmos: halmos\\n- Certora Prover: certoraRun\\n- Set Certora Key: certoraKey key\\n- Manticore: manticore\\n- Solc-select: solc-select\\n- Open last solity lang doc: solc-docs --book\\n\\nUse add2 or add2lbox to quick install auditor packages\\n" >> /etc/motd
+
 RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 USER whitehat
 
