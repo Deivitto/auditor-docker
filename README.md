@@ -64,6 +64,11 @@ Run `docker start` with the name of your instance. If the [one-line command](#on
 docker start devops199
 ```
 
+## To increase maximum stack size (i.e. to use manticore)
+```bash
+docker run -it --ulimit stack=100000000:100000000 -d --name devops199 whitehat-machine 
+```
+
 ## Credentials
 The default password: 
 ```bash
