@@ -1,8 +1,8 @@
 # Auditor-Toolbox
 ## Intro
-This auditor toolbox, intends to be a public repo where different toolboxs will araise for different goals and be in a 1 click install way. 
+This auditor toolbox, intends to be a public repo where different toolboxs will araise for different goals and be in a one-click install way. 
 
-Actually, it's en alpha general version. I would like to keep it updated with new tools, new version and everything, feel free to ping me or suggest new improvements ^~^. 
+Actually, it's en alpha general version. I would like to keep it updated with new tools, new version and everything, feel free to ping me or suggest new improvements. 
 
 ## Index
 
@@ -16,8 +16,6 @@ Actually, it's en alpha general version. I would like to keep it updated with ne
 3. [Troubleshooting](#troubleshooting)
     * [3.1 Parent system out of time](#parent-system-out-of-time)
     * [3.2 `code` not working](#code-not-working)
-
-
 
 ## Basic build 
 Clone the repo and `cd` into it
