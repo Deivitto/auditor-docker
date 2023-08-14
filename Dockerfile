@@ -30,6 +30,7 @@ RUN apt-get update && \
     pandoc \
     texlive \
     ca-certificates \
+    unzip \
     pkg-config && \
     rm -rf /var/lib/apt/lists/*
 
