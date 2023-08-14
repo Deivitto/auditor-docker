@@ -29,7 +29,7 @@ RUN apt-get update && \
     openssh-client \
     pandoc \
     texlive \
-    ca-certificates && \
+    ca-certificates \
     pkg-config && \
     rm -rf /var/lib/apt/lists/*
 
