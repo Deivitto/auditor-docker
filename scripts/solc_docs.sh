@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Gets the latest solc docs pdf and if a pdf reader is installed, it opens the file
+
 pdf_viewer="code"
 book_name="solidity_docs"
 
