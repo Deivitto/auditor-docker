@@ -102,7 +102,7 @@ Select the option you want to install and voila, you're all set!
 ###  Ethereum Development:
 - **Ethereum Utilities**: ethereum.
 - **Python developer kit**: It includes Vyper, Brownie, Py-solc-x and pyevwasm, can be found in `add2`
-- **Trail of Bits**: A suite of tools including Slither, Echidna, Manticore, and Etheno.
+- **Trail of Bits**: A suite of tools including Slither, Echidna, Medusa Fuzzer, Manticore, and Etheno.
 - **Certora**: Prover tool.
 - **Consensys**: Mythril for smart contract analysis.
 - **Solc-select**: Easily switch between different versions of Solidity compilers.
