@@ -4,6 +4,8 @@ This auditor toolbox, intends to be a public repo where different toolboxs will 
 
 Actually, it's in alpha general version. I would like to keep it updated with new tools, new versions and everything, feel free to ping me or suggest new improvements. 
 
+>Disclaimer: This auditor toolbox it's still under development, close to beta but not yet. Some issues may arise until the first stable version is created
+
 ## Index
 
 1. Auditor Toolbox Setup
