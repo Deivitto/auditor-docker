@@ -9,10 +9,10 @@
     
     deactivate
     
-echo -e 'function myth() {\n\
-    source $(pwd)/.mythril_env/bin/activate\n\
-    command myth "$@"\n\
-    deactivate\n\
+echo -e 'function myth() {\n
+    source $(pwd)/.mythril_env/bin/activate\n
+    command myth "$@"\n
+    deactivate\n
 }' >> ~/.bashrc
 
     source ~/.bashrc
