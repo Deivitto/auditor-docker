@@ -1,3 +1,4 @@
+#!/bin/bash
 # Installs Noir in .nargo folder
 source ~/.cargo/env && \
 # Creates the bin folder
