@@ -1,13 +1,16 @@
 #!/bin/bash
-    
-    echo "Installing brew and echidna..."
-    
-    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
-    export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX/Homebrew"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
-    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/whitehat/.bashrc  && \
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
-    brew install --HEAD echidna && \
-    brew postinstall echidna
-    
-    echo "Installation completed!"
+# Initial comment code is working
+echo "Installing brew and echidna..."
+# Export keywords
+export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX/Homebrew"
+# Start brew installation
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
+(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/whitehat/.bashrc  && \
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
+# Use brew to install last version of echidna
+brew install --HEAD echidna && \
+# End configuration
+brew postinstall echidna
+# Confirmation message
+echo "Installation completed!"
