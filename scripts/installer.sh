@@ -11,7 +11,7 @@
 ## 6 - Circom 
 ## 7 - Vyper, Brownie, py-solc-select and other Python related tools for Ethereum
 ## 8 - If launched within VSCode, it will install common VSCode extensions for audits
-
+## 9 - Medusa Fuzzer
 ##
 
 DIALOG_CANCEL=1
@@ -51,7 +51,7 @@ selection=$(dialog \
     --title "Menu" \
     --clear \
     --cancel-label "Exit" \
-    --menu "Please select an option:" 0 0 8 \
+    --menu "Please select an option:" 0 0 9 \
     "1" "Install Echidna" \
     "2" "Install Certora Prover + Java SDK 11 (requirement)" \
     "3" "Install Mythril" \
@@ -60,6 +60,7 @@ selection=$(dialog \
     "6" "Install Circom" \
     "7" "Install Python Developer Tools" \
     "8" "Install VS Code Audit Extensions" \
+    "9" "Install Medusa Fuzzer" \ 
     2>&1 1>&3)
 exit_code=$?
 exec 3>&-
@@ -119,6 +120,11 @@ case $selection in
     8)
         run_with_progress "/home/whitehat/scripts/vscode_audit_extensions.sh" "VS Code Audit Extensions"
         result="vscode_audit_extensions.sh installed successfully!"
+        display_result "Result"
+    ;;
+    9)
+        run_with_progress "/home/whitehat/scripts/medusa_fuzzer.sh" "Medusa Fuzzer"
+        result="medusa_fuzzer.sh installed successfully!"
         display_result "Result"
     ;;
 esac
