@@ -1,4 +1,5 @@
 #!/bin/bash
+cd /home/whitehat
 git clone https://github.com/iden3/circom.git .circom
 cd .circom
 cargo build --release
