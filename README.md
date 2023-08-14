@@ -99,6 +99,7 @@ Select the option you want to install and voila, you're all set!
 - **Circom**: Framework for zkSNARK circuits.
 ###  Ethereum Development:
 - **Ethereum Utilities**: ethereum.
+- **Python developer kit**: It includes Vyper, Brownie, Py-solc-x and pyevwasm, can be found in `add2`
 - **Trail of Bits**: A suite of tools including Slither, Echidna, Manticore, and Etheno.
 - **Certora**: Prover tool.
 - **Consensys**: Mythril for smart contract analysis.
