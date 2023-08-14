@@ -1,76 +1,22 @@
 # Auditor Toolbox Scripts
 
-> Notice: To update descriptions
-    
-Interactive script to install other toolbox scripts. Use the following command to run it:
-    
-```bash
-add2lbox
-```
-or
-```bash
-./scripts/installer.sh
-```
+This interactive script assists with the installation of various tools commonly used for smart contract audits and other blockchain-related tasks. When executed, a menu will be displayed, allowing users to select which tools or packages they wish to install.
 
-Installs the following Python packages:
-- pyevmasm
-- py-solc-x
-- vyper
-- brownie
+To start the toolbox installer, you can use:
+- `add2lbox`
+- Directly via `./scripts/installer.sh`
 
-To run the script, use the following command:
+## Tools & Packages Available:
 
-```bash
-./scripts/py_developer_setup.sh
-```
+1. **Echidna** - Smart contract fuzzer.
+2. **Certora Prover + Java SDK 11 (requirement)** - Formal verification tool for smart contracts.
+    > Note: Replace `<premium_key>` with your actual Certora premium key during installation.
+3. **Mythril** - Security analysis tool for Ethereum smart contracts.
+4. **Manticore + Etheno** - Symbolic execution tool.
+5. **Noir (Nargo)** - Privacy-preserving smart contract language.
+6. **Circom** - Circuit compiler for zero-knowledge proofs.
+7. **Python Developer Tools** - Includes Vyper, Ape Vyper, py-solc-x, and other Python tools related to Ethereum.
+8. **VS Code Audit Extensions** - Installs common extensions used for smart contract audits when launched within VSCode.
+9. **Medusa Fuzzer** - Fuzzer for binary applications.
 
-Installs OpenJDK 11, Certora CLI, and sets the Certora key and solc path.
-
-To run the script, use the following command:
-
-```bash
-./scripts/certora_setup.sh <premium_key>
-```
-Replace `<premium_key>` with your actual Certora premium key.
-
-Installs the following Trail of Bits tools:
-- manticore
-- etheno
-
-To run the script, use the following command:
-
-```bash
-./scripts/advanced_tob_tools_setup.sh
-```
-
-Installs Noir language (Nargo).
-
-To run the script, use the following command:
-
-```bash
-./scripts/noir_setup.sh
-```
-
-Installs Circom.
-
-To run the script, use the following command:
-
-```bash
-./scripts/circom_setup.sh
-```
-
-Installs Mythril in a virtual environment and creates an alias `myth` to run it.
-
-To run the script, use the following command:
-
-```bash
-./scripts/mythril_setup.sh
-```
-Installs Homebrew and Echidna.
-
-To run the script, use the following command:
-
-```bash
-./scripts/echidna_installer.sh
-```
-    
+For detailed instructions or issues, refer to the individual script files.
