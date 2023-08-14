@@ -1,5 +1,19 @@
 #!/bin/bash
 
+## This code is just a selector for when launching add2 or add2lbox
+## This code launches the other scripts in this folder
+## Scripts available:
+## 1 - Echidna
+## 2 - Certora Prover
+## 3 - Mythril
+## 4 - Manticore + Etheno 
+## 5 - Noir (Nargo)
+## 6 - Circom 
+## 7 - Vyper, Brownie, py-solc-select and other Python related tools for Ethereum
+## 8 - If launched within VSCode, it will install common VSCode extensions for audits
+
+##
+
 DIALOG_CANCEL=1
 DIALOG_ESC=255
 
