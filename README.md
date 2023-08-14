@@ -8,7 +8,7 @@ Actually, it's in alpha general version. I would like to keep it updated with ne
 
 >Notice: The base Dockerfile is expected to be finished, so if the compilation works, everything is fine, time to enjoy this Docker!
 
->Notice: Some new scripts under scripts/ may appear or some may fail as I test them under production (welcome to web3 lmao), keep it updated calling `bash scripts/update_scripts.sh`
+>Notice: Some new scripts under scripts/ may appear or some may fail as I test them under production (welcome to web3 lmao), but don't worry, keep them updated / fix them by calling `bash scripts/update_scripts.sh`!
 
 ## Index
 
