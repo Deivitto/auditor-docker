@@ -60,7 +60,7 @@ selection=$(dialog \
     "6" "Install Circom" \
     "7" "Install Python Developer Tools" \
     "8" "Install VS Code Audit Extensions" \
-    "9" "Install Medusa Fuzzer" \ 
+    "9" "Install Medusa Fuzzer" \
     2>&1 1>&3)
 exit_code=$?
 exec 3>&-
