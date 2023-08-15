@@ -122,7 +122,7 @@ Select the option you want to install and voila, you're all set!
 
 Additionally, the image sets up an environment for a user named `whitehat` and includes several installer scripts to simplify the installation of various tools and libraries.
 
-## Installer Scripts
+## Scripts
 
 The toolbox includes scripts to fast install multiple packages, utilities or dependencies that maybe not all auditors but a considerable part may use. To launch the install script:
 
@@ -135,6 +135,20 @@ or
 ```bash
 add2lbox
 ```
+
+It also includes a script to update the scripts and templates folder with the latest version of this github:
+
+```bash
+add2-update
+```
+
+Also, it includes a script to create issues fastly without leaving the docker enviornment. Example:
+
+```bash
+issue c4 -n UncheckedTransfer -vim
+```
+
+That would create an issue with the Code4rena template, with name UncheckedTransfer and it is opened at the end using vim. For more info run `issue -h`
 
 # Troubleshooting
 ## Parent system out of time
