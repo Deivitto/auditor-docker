@@ -152,6 +152,9 @@ COPY motd /etc/motd
 RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 USER whitehat
 
+RUN HASH=$(find /home/whitehat/.vscode-server/bin/ -maxdepth 1 -type d | grep -Eo '[a-f0-9]{40}') && \
+    echo "export PATH=\$PATH:$HASH/bin/remote-cli/" >> /home/whitehat/.bashrc
+
 # Add aliases
 RUN echo "alias python3='python3.9'" >> ~/.bashrc && \
     echo "alias pip3='python3 -m pip'" >> ~/.bashrc && \
