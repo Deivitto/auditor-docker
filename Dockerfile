@@ -99,6 +99,8 @@ RUN foundryup
 
 # Create the scripts directory
 RUN mkdir -p /home/whitehat/scripts
+# Create the templates directory
+RUN mkdir -p /home/whitehat/templates
 
 # Create the 'add2' and 'add2lbox' scripts
 RUN echo '#!/bin/bash\n/home/whitehat/scripts/installer.sh' > /home/whitehat/add2lbox 
@@ -136,7 +138,7 @@ USER root
 # Move scripts inside the folder and give permissions
 COPY /scripts/*.sh /home/whitehat/scripts/
 COPY /scripts/readme.md /home/whitehat/scripts/readme.md
-COPY /templates/ /home/whitehat/templates/
+COPY /templates/* /home/whitehat/templates/
 RUN chmod +x /home/whitehat/scripts/*.sh && \
     # Set the owner and group of the scripts directory to whitehat
     chown -R whitehat:whitehat /home/whitehat/scripts
@@ -151,6 +153,8 @@ RUN echo "alias python3='python3.9'" >> ~/.bashrc && \
     echo "alias pip3='python3 -m pip'" >> ~/.bashrc && \
     echo 'alias certoraKey="~/scripts/certora_key_setup.sh"' >> ~/.bashrc && \
     echo "alias solc-docs='bash ~/scripts/solc_docs.sh'" >> ~/.bashrc && \
+    echo "alias issue='bash ~/scripts/issue_creator.sh'" >> ~/.bashrc && \
+    echo "alias add2-update='bash ~/scripts/update_scripts.sh'" >> ~/.bashrc && \
     echo "alias add2='add2lbox'" >> ~/.bashrc && \
     source ~/.bashrc
 
