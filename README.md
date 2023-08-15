@@ -20,7 +20,7 @@ First version of Auditor Toolbox is ready. I would like to keep it updated with 
 ## Basic build 
 Clone the repo and `cd` into it
 ```bash
-git clone https://github.com/misirov/auditor-docker.git && \
+git clone https://github.com/Deivitto/auditor-docker.git && \
 cd auditor-docker
 ```
 
@@ -47,7 +47,7 @@ Now, at the docker machine, a directory called `/code` will include the current 
 The fast command to install the machine is
 ```bash
 rm -rf auditor-docker && \
-git clone https://github.com/misirov/auditor-docker.git && \
+git clone https://github.com/Deivitto/auditor-docker.git && \
 cd auditor-docker && \
 docker build -t whitehat-machine . && \
 docker run -it -d --name devops199 whitehat-machine
