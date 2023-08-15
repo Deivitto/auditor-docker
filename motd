@@ -1,6 +1,6 @@
 
 AUDITOR TOOLBOX
-https://github.com/misirov/auditor-docker/
+https://github.com/Deivitto/auditor-docker/
 
 #       _             _ _ _                       
 #      / \  _   _  __| (_) |_ ___  _ __          
@@ -25,11 +25,13 @@ Security Tools and Resources Installed:
 - Echidna: echidna
 - Mythril: myth
 - Halmos: halmos
+- Heimdall: heimdall
 - Certora Prover: certoraRun
 - Set Certora Key: certoraKey key
 - Manticore: manticore
 - Solc-select: solc-select
 - Open last solity lang doc: solc-docs --book
+- Create an issue for an audit: issue
 
 Use add2 or add2lbox to quick install auditor packages
 
