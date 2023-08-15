@@ -4,12 +4,6 @@ This auditor toolbox, intends to be a public repo where different toolboxs will 
 
 Actually, it's in alpha general version. I would like to keep it updated with new tools, new versions and everything, feel free to ping me or suggest new improvements. 
 
->Disclaimer: This auditor toolbox it's still under development, close to beta but not yet. Some issues may arise until the first stable version is created
-
->Notice: The base Dockerfile is expected to be finished, so if the compilation works, everything is fine, time to enjoy this Docker!
-
->Notice: Some new scripts under scripts/ may appear or some may fail as I test them under production (welcome to web3 lmao), but don't worry, keep them updated / fix them by calling `bash scripts/update_scripts.sh`!
-
 ## Index
 
 1. Auditor Toolbox Setup
