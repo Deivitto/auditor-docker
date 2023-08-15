@@ -118,7 +118,7 @@ Select the option you want to install and voila, you're all set!
 - **Pessimistic IO**: Specialized slither detectors.
 - **Spearbit**: Dependencies for [Spearbit Report Generator](https://github.com/spearbit-audits/report-generator-template)
 
-
+For more info go to the [references](https://github.com/Deivitto/auditor-docker/wiki/References) page where all the links to the packages are included
 
 Additionally, the image sets up an environment for a user named `whitehat` and includes several installer scripts to simplify the installation of various tools and libraries.
 
