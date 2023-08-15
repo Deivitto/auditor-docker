@@ -31,6 +31,7 @@ RUN apt-get update && \
     texlive \
     ca-certificates \
     zip \
+    unzip \
     pkg-config && \
     rm -rf /var/lib/apt/lists/*
 
@@ -90,8 +91,11 @@ RUN . "$NVM_DIR/nvm.sh" && \
 
 # Install cargo, rust, and foundry
 RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
-    curl -L https://foundry.paradigm.xyz | bash  && \
-    curl -L http://get.heimdall.rs | bash
+    curl -L https://foundry.paradigm.xyz | bash && \
+    curl -L http://get.heimdall.rs | bash && \
+    PATH=$PATH:/home/whitehat/.cargo/bin && \
+    PATH=$PATH:/home/whitehat/.bifrost/bin bifrost
+
 
 ENV PATH="/home/whitehat/.foundry/bin:${PATH}"
 
