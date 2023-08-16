@@ -4,7 +4,6 @@ This auditor toolbox, intends to be a public repo where different toolboxs will 
 
 Beta version of Auditor Toolbox is ready. I would like to keep it updated with new tools, new versions and everything, feel free to ping me or suggest new improvements. 
 
->Disclaimer: Still under testing due to some bugs
 
 ## Index
 
