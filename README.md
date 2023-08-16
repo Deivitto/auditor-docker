@@ -179,7 +179,7 @@ source ~/.bashrc
 ```
 
 ### Solution 2
-This was pretty more annoying
+This was pretty more annoying, but totally worked
 - Step 1: Inside the docker machine, remove the /.vscode-server. Run:
 ```bash
 rm -r ~/.vscode-server # you can also run mv ~/.vscode-server ~/.backup-vscode-server
