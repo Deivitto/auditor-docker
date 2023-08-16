@@ -1,6 +1,6 @@
 # Auditor-Toolbox
 ## Intro
-The Auditor Toolbox is set to be a go-to public repo. The plan? Different toolboxes curated for various objectives, all with a one-click install convenience.
+The Auditor Toolbox essential goal is to pack all the essential auditor tools into a single Docker Image!
 
 Our beta version is up and running! I'm keen on keeping it fresh with the latest tools and versions. Got suggestions or updates? Don't hesitate to reach out or pitch in your ideas!
 
