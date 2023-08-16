@@ -1,8 +1,8 @@
 # Auditor-Toolbox
 ## Intro
-This auditor toolbox, intends to be a public repo where different toolboxs will araise for different goals and to be in a one-click install way. 
+The Auditor Toolbox is set to be a go-to public repo. The plan? Different toolboxes curated for various objectives, all with a one-click install convenience.
 
-Beta version of Auditor Toolbox is ready. I would like to keep it updated with new tools, new versions and everything, feel free to ping me or suggest new improvements. 
+Our beta version is up and running! I'm keen on keeping it fresh with the latest tools and versions. Got suggestions or updates? Don't hesitate to reach out or pitch in your ideas!
 
 
 ## Index
