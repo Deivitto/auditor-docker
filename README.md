@@ -92,29 +92,31 @@ Select the option you want to install and voila, you're all set!
 ## Features
 ### Base Setup:
 - **Operating System**: Ubuntu Jammy (22.04)
-- **Utilities**: Git, Curl/wget, gawk/ripgrep, z3, pandoc, openssh-client, texlive, and Vim with solidity plugins.
+- **Utilities**: Git, Curl/wget, gawk/ripgrep, z3, pandoc, openssh-client, texlive, solidity plugins for Vim, etc.
 ### Languages & Frameworks:
-- **Python**: Version 3.9, with developer tools including Pyevmasm, Py-solc-x, Vyper, and Brownie.
-- **Rust**: Comprehensive setup with Cargo, Heimdall, Forge, Anvil, Cast, and Halmos.
+- **Python**: Version 3.9
+- **Rust**: Comprehensive setup with Cargo
 - **Julia**: Built-in support.
 - **Noir**: Support for the Noir language (Nargo).
 - **Circom**: Framework for zkSNARK circuits.
 ###  Ethereum Development:
-- **Ethereum Utilities**: ethereum.
-- **Python developer kit**: It includes Vyper, Ape-Vyper, Py-solc-x and pyevwasm, can be found in `add2`
-- **Trail of Bits**: A suite of tools including Slither, Echidna, Medusa Fuzzer, Manticore, and Etheno.
-- **Certora**: Prover tool.
-- **Consensys**: Mythril for smart contract analysis.
-- **Solc-select**: Easily switch between different versions of Solidity compilers.
+A set of most of the famous tools in the ecosystem by different authors.
+- **Ethereum** dependencies.
+- **Foundry** as modular toolkit for Ethereum application development written in Rust. It includes: **Forge**, **Anvil**, **Cast**, and **Chisel**. Author Paradigm.
+- **Halmos** for Symbolic Bounded Model Checker for Ethereum Smart Contracts Bytecode. Author a16z.
+- **Heimdall** for advanced EVM smart contract toolkit specialized in bytecode analysis. Author Jon-Becker.
+- **Slither**, **Echidna**, **Medusa Fuzzer**, **Manticore**, and **Etheno**, **solc-select** and **crytic compile**. Author Trail of Bits.
+- **Extra Slither detectors**, specialized **detectors** for Slither. Author Pessimistic.io.
+- **Prover** tool for symbolic analysis. Author Certora.
+- **Mythril** for smart contract analysis. Author Consensys.
+- **Spearbit Report Generator**, all needed **dependencies** to use the report generator in Spearbit audits
+- **Python developer kit**: It includes **Vyper**, **Ape-Vyper**, **Py-solc-x** and **pyevwasm**, can be found in `add2`
 ### Node.js Development:
 - **NVM**: Node Version Manager to switch between different Node.js versions.
 - **Node**: Long Term Support (LTS) version.
-- **Package Managers**: npm, yarn, and pnpm.
-### Other Features:
-- **Pessimistic IO**: Specialized slither detectors.
-- **Spearbit**: Dependencies for [Spearbit Report Generator](https://github.com/spearbit-audits/report-generator-template)
+- **Package** Managers: npm, yarn, and pnpm.
 
-For more info go to the [references](https://github.com/Deivitto/auditor-docker/wiki/References) page where all the links to the packages are included
+For more info go to the [table](https://github.com/Deivitto/auditor-docker/wiki/Features) with all the features or to the [references](https://github.com/Deivitto/auditor-docker/wiki/References) page in the wiki, where all the links to the packages are included.
 
 Additionally, the image sets up an environment for a user named `whitehat` and includes several installer scripts to simplify the installation of various tools and libraries.
 
