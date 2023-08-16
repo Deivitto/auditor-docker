@@ -165,7 +165,9 @@ sudo date -s "$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //
 
 **Breaks**: on use. Doesn't recognize `code`
 
-Use this command to append to the file `.bashrc` (or just copy paste the content inside to the file)
+### Solution 1: Sometimes work
+
+Use this command to append to the file `.bashrc` an alias to find the vscode `code` command
 ```bash
 echo "VSCODE_SSH_BIN=$(echo "$BROWSER" | sed -e 's/\/helpers\/browser.sh//g')
 alias code='$VSCODE_SSH_BIN/remote-cli/code'" >> ~/.bashrc 
@@ -175,4 +177,20 @@ Then source it
 ```bash
 source ~/.bashrc 
 ```
+
+### Solution 2
+This was pretty more annoying
+- Step 1: Inside the docker machine, remove the /.vscode-server. Run:
+```bash
+rm -r ~/.vscode-server # you can also run mv ~/.vscode-server ~/.backup-vscode-server
+```
+- Step 2: Outside the docker machine, shutdown wsl what is linked with docker, run:
+```bash
+wsl --shutdown
+```
+
+This will first make docker desktop look like there are no instances of the machines, but after restarting docker desktop, it will show them again.
+
+- Step 3: Restart docker desktop (in case you are using it)
+- Step 4: Newly launch the command palette and attach the docker image from vscode and enjoy having `code` ready again :P
 
