@@ -162,6 +162,9 @@ RUN echo "alias python3='python3.9'" >> ~/.bashrc && \
     echo "alias add2='add2lbox'" >> ~/.bashrc && \
     source ~/.bashrc
 
+# Append the specified PATH to .bashrc. This is a hotfix. TODO: https://github.com/Deivitto/auditor-docker/issues/31
+RUN echo 'export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"' >> ~/.bashrc
+
 # ENTRYPOINT ["/bin/bash"] is used to set the default command for the container to start a new Bash shell.
 # This ensures that when the container is run, the user will be dropped into an interactive Bash shell by default.
 ENTRYPOINT ["/bin/bash"]

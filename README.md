@@ -92,15 +92,17 @@ Select the option you want to install and voila, you're all set!
 ### Base Setup:
 - **Operating System**: Ubuntu Jammy (22.04)
 - **Utilities**: Git, Curl/wget, gawk/ripgrep, z3, pandoc, openssh-client, texlive, solidity plugins for Vim, etc.
+- **Ethereum** dependencies.
 ### Languages & Frameworks:
 - **Python**: Version 3.9
 - **Rust**: Comprehensive setup with Cargo
 - **Julia**: Built-in support.
 - **Noir**: Support for the Noir language (Nargo).
 - **Circom**: Framework for zkSNARK circuits.
+- **Solidity**: Smart contracts language.
+- **Vyper**: Smart contracts language.
 ###  Ethereum Development:
 A set of most of the famous tools in the ecosystem by different authors.
-- **Ethereum** dependencies.
 - **Foundry** as modular toolkit for Ethereum application development written in Rust. It includes: **Forge**, **Anvil**, **Cast**, and **Chisel**. Author Paradigm.
 - **Halmos** for Symbolic Bounded Model Checker for Ethereum Smart Contracts Bytecode. Author a16z.
 - **Heimdall** for advanced EVM smart contract toolkit specialized in bytecode analysis. Author Jon-Becker.
@@ -110,6 +112,8 @@ A set of most of the famous tools in the ecosystem by different authors.
 - **Mythril** for smart contract analysis. Author Consensys.
 - **Spearbit Report Generator**, all needed **dependencies** to use the report generator in Spearbit audits
 - **Python developer kit**: It includes **Vyper**, **Ape-Vyper**, **Py-solc-x** and **pyevwasm**, can be found in `add2`
+- **4nalyz3r**: A comprehensive static analysis tool for smart contracts. Author: Picodes.
+- **Ganache** and **Truffle**: Tools such as running a personal blockchain, development environment, testing framework, and asset pipeline for Ethereum. Author: Truffle Suite.
 ### Node.js Development:
 - **NVM**: Node Version Manager to switch between different Node.js versions.
 - **Node**: Long Term Support (LTS) version.
@@ -148,6 +152,22 @@ issue c4 -n UncheckedTransfer -vim
 That would create an issue with the Code4rena template, with name UncheckedTransfer and it is opened at the end using vim. For more info run `issue -h`
 
 # Troubleshooting
+## `yarn`: command not found
+
+**Issue**: Command not found due to path being overriden
+
+**Where**: Version 0.0.1 of the auditor toolbox
+
+**Breaks**: Launching
+
+
+Go to the line at .bashrc that is says :home but not $PATH:home
+```diff
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+- export PATH="$PATH:/home/whitehat/.nvm/versions/node/v18.17.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/whitehat/.local/bin"
++ export PATH="$PATH:/home/whitehat/.nvm/versions/node/v18.17.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/whitehat/.local/bin"
+. "$HOME/.cargo/env"
+```
 ## Parent system out of time
 **Issue**: Exit code 100
 
