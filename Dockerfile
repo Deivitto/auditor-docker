@@ -80,22 +80,21 @@ RUN . "$NVM_DIR/nvm.sh" && \
     nvm alias default lts/* && \
     nvm use default && \
     node_version=$(node --version) && \
-    echo "export PATH=\"/home/whitehat/.nvm/versions/node/$node_version/bin:$PATH\"" >> /home/whitehat/.bashrc && \
+    echo "PATH=\"$PATH:/home/whitehat/.nvm/versions/node/$node_version/bin:${PATH}\"" >> /home/whitehat/.bashrc && \
     . /home/whitehat/.bashrc && \
-    npm install --omit=dev --global --force ganache truffle pnpm
-
-# Install Yarn and update PATH for its global binaries
-RUN . "$NVM_DIR/nvm.sh" && \
+    npm install --omit=dev --global --force ganache truffle pnpm && \
+    # Install Yarn
+    . "$NVM_DIR/nvm.sh" && \
     curl -o- -L https://yarnpkg.com/install.sh | bash && \
+    # Update PATH for Yarn global binaries
     echo "export PATH=\"$(yarn global bin):$PATH\"" >> /home/whitehat/.bashrc
 
 # Install cargo, rust, and foundry
 RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     curl -L https://foundry.paradigm.xyz | bash && \
     curl -L http://get.heimdall.rs | bash && \
-    echo "export PATH=\"$PATH:/home/whitehat/.cargo/bin:/home/whitehat/.bifrost/bin\"" >> /home/whitehat/.bashrc && \
-    . /home/whitehat/.bashrc && \
-    bifrost
+    PATH=$PATH:/home/whitehat/.cargo/bin && \
+    PATH=$PATH:/home/whitehat/.bifrost/bin bifrost
 
 
 ENV PATH="/home/whitehat/.foundry/bin:${PATH}"
