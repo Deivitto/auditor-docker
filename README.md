@@ -78,7 +78,7 @@ Easily deploy an auditing environment for Ethereum smart contracts using this Do
 
 ### Quick Start
 
-Execute the add2 command:
+After the docker is builded, you may be missing some tool not installed by default, if so, execute the `add2` command:
 
 ```bash
 add2
