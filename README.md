@@ -92,15 +92,17 @@ Select the option you want to install and voila, you're all set!
 ### Base Setup:
 - **Operating System**: Ubuntu Jammy (22.04)
 - **Utilities**: Git, Curl/wget, gawk/ripgrep, z3, pandoc, openssh-client, texlive, solidity plugins for Vim, etc.
+- **Ethereum** dependencies.
 ### Languages & Frameworks:
 - **Python**: Version 3.9
 - **Rust**: Comprehensive setup with Cargo
 - **Julia**: Built-in support.
 - **Noir**: Support for the Noir language (Nargo).
 - **Circom**: Framework for zkSNARK circuits.
+- **Solidity**: Smart contracts language.
+- **Vyper**: Smart contracts language.
 ###  Ethereum Development:
 A set of most of the famous tools in the ecosystem by different authors.
-- **Ethereum** dependencies.
 - **Foundry** as modular toolkit for Ethereum application development written in Rust. It includes: **Forge**, **Anvil**, **Cast**, and **Chisel**. Author Paradigm.
 - **Halmos** for Symbolic Bounded Model Checker for Ethereum Smart Contracts Bytecode. Author a16z.
 - **Heimdall** for advanced EVM smart contract toolkit specialized in bytecode analysis. Author Jon-Becker.
@@ -110,6 +112,8 @@ A set of most of the famous tools in the ecosystem by different authors.
 - **Mythril** for smart contract analysis. Author Consensys.
 - **Spearbit Report Generator**, all needed **dependencies** to use the report generator in Spearbit audits
 - **Python developer kit**: It includes **Vyper**, **Ape-Vyper**, **Py-solc-x** and **pyevwasm**, can be found in `add2`
+- **4nalyz3r**: A comprehensive static analysis tool for smart contracts. Author: Picodes.
+- **Ganache** and **Truffle**: Tools such as running a personal blockchain, development environment, testing framework, and asset pipeline for Ethereum. Author: Truffle Suite.
 ### Node.js Development:
 - **NVM**: Node Version Manager to switch between different Node.js versions.
 - **Node**: Long Term Support (LTS) version.
