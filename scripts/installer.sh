@@ -9,7 +9,7 @@
 ## 4 - Manticore + Etheno 
 ## 5 - Noir (Nargo)
 ## 6 - Circom 
-## 7 - Vyper, Ape Vyper, py-solc-select and other Python related tools for Ethereum
+## 7 - Vyper, Brownie, py-solc-select and other Python related tools for Ethereum
 ## 8 - If launched within VSCode, it will install common VSCode extensions for audits
 ## 9 - Medusa Fuzzer
 ##
@@ -51,7 +51,7 @@ selection=$(dialog \
     --title "Menu" \
     --clear \
     --cancel-label "Exit" \
-    --menu "Please select an option:" 0 0 9 \
+    --menu "Please select an option:" 0 0 10 \
     "1" "Install Echidna" \
     "2" "Install Certora Prover + Java SDK 11 (requirement)" \
     "3" "Install Mythril" \
@@ -61,6 +61,7 @@ selection=$(dialog \
     "7" "Install Python Developer Tools" \
     "8" "Install VS Code Audit Extensions" \
     "9" "Install Medusa Fuzzer" \
+    "10" "Install 4nalyz3r" \
     2>&1 1>&3)
 exit_code=$?
 exec 3>&-
@@ -125,6 +126,11 @@ case $selection in
     9)
         run_with_progress "/home/whitehat/scripts/medusa_fuzzer.sh" "Medusa Fuzzer"
         result="medusa_fuzzer.sh installed successfully!"
+        display_result "Result"
+    ;;
+        10)
+        run_with_progress "/home/whitehat/scripts/analyzer_installer.sh" "4nalyz3r"
+        result="analyzer_installer.sh installed successfully!"
         display_result "Result"
     ;;
 esac
