@@ -40,6 +40,10 @@ check_differences() {
                     for fname in "${files_to_update[@]}"; do
                         echo "Updating $fname in $folder_name..."
                         cp "$TEMP_DIR/$folder_name/$fname" "$LOCAL_DIR/$folder_name/$fname"
+                        # Apply execute permissions if it's a script
+                        if [[ "$folder_name" == "scripts" && "$fname" == *.sh ]]; then
+                            chmod +x "$LOCAL_DIR/$folder_name/$fname"
+                        fi
                     done
                     break
                     ;;
