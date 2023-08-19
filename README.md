@@ -14,7 +14,8 @@ Our beta version is up and running! I'm keen on keeping it fresh with the latest
     * [1.4 To relaunch the docker instance](#to-relaunch-the-docker-instance)
     * [1.5 Credentials](#credentials)
 2. [Auditor Toolbox for Ethereum Smart Contracts](#auditor-toolbox-for-ethereum-smart-contracts)
-3. [Troubleshooting](#troubleshooting)
+3. [Scripts](#scripts)
+4. [Troubleshooting](#troubleshooting)
 
 ## Basic build 
 Clone the repo and `cd` into it
