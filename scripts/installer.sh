@@ -9,7 +9,7 @@
 ## 4 - Manticore + Etheno 
 ## 5 - Noir (Nargo)
 ## 6 - Circom 
-## 7 - Vyper, Brownie, py-solc-select and other Python related tools for Ethereum
+## 7 - Vyper, Ape Vyper, py-solc-select and other Python related tools for Ethereum
 ## 8 - If launched within VSCode, it will install common VSCode extensions for audits
 ## 9 - Medusa Fuzzer
 ##
