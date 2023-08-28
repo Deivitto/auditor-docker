@@ -1,6 +1,6 @@
 #!/bin/bash
 # Go home
-cd /home/whitehat
+cd $HOME
 # Clone circom into .circom
 git clone https://github.com/iden3/circom.git .circom
 # Cd in
