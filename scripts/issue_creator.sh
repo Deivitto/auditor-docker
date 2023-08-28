@@ -2,7 +2,7 @@
 
 TEMPLATES_DIR="templates"
 ISSUES_DIR="${TEMPLATES_DIR}/issues"
-TEMPLATE_NAMES=("Code4renaHM" "Codehawks" "Sherlock" "Spearbit")
+TEMPLATE_NAMES=("Code4renaHM" "CodeHawks" "Sherlock" "Spearbit")
 ACRONYMS=("c4" "ch" "sh" "sp")
 
 display_help() {
@@ -11,7 +11,7 @@ display_help() {
     echo ""
     echo "Options:"
     echo "  1, c4   - Code4renaHM"
-    echo "  2, ch   - Codehawks"
+    echo "  2, ch   - CodeHawks"
     echo "  3, sh   - Sherlock"
     echo "  4, sp   - Spearbit"
     echo "  -n      - Specify a custom name for the issue file."
@@ -26,7 +26,7 @@ parse_template_name() {
     local arg="$1"
     case "$arg" in
         "1"|"c4") echo "Code4renaHM" ;;
-        "2"|"ch") echo "Codehawks" ;;
+        "2"|"ch") echo "CodeHawks" ;;
         "3"|"sh") echo "Sherlock" ;;
         "4"|"sp") echo "Spearbit" ;;
         *) echo ""; exit 1 ;;
