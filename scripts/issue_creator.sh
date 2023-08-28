@@ -53,6 +53,14 @@ resolve_collision() {
     echo "${base_name}-${count}"
 }
 
+check_code_command_exists() {
+    if command -v code &> /dev/null; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 main() {
     if [[ "$#" -eq 0 ]]; then
         display_help
@@ -63,11 +71,16 @@ main() {
     local custom_name=""
     local template_name=""
 
+    local use_code_explicitly=false
+    local disable_editor=false
+
     for arg in "$@"; do
         case "$arg" in
             "-h") display_help; exit 0 ;;
             "-nano") editor="nano" ;;
             "-vim") editor="vim" ;;
+            "-d") disable_editor=true ;;
+            "-code") use_code_explicitly=true ;;
             "-n") custom_name_next=true ;;
             *)
                 if [[ "$custom_name_next" == true ]]; then
@@ -80,6 +93,15 @@ main() {
         esac
     done
 
+    # Determine the default editor based on the presence of 'code' command, and the provided options.
+    if ! disable_editor && [[ "$editor" == "code" ]]; then
+        if ! check_code_command_exists && ! $use_code_explicitly; then
+            echo "'code' command not found. Defaulting to 'nano' as the editor."
+            editor="nano"
+        fi
+    fi
+
+    # Display help
     if [[ -z "$template_name" ]]; then
         display_help
         exit 1
