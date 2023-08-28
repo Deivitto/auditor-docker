@@ -106,9 +106,8 @@ if [[ -f \$REPORT_PATH && -n \$EDITOR_FLAG ]]; then
 fi
 EOL
 
-# Step 3: Create a symbolic link in /.local/bin
-
-echo "Creating symbolic link in /usr/local/bin for global access..."
-ln -s "${SCRIPT_PATH}" /.local/bin/analyze4
+# Step 3: Create a symbolic link in ~/.local/bin
+echo "Creating symbolic link in ~/.local/bin for global access..."
+ln -s "${SCRIPT_PATH}" ~/.local/bin/analyze4
 
 echo "Installation complete! You can now use analyze4 command anywhere in your system."
