@@ -96,12 +96,14 @@ main() {
     done
 
     # Determine the default editor based on the presence of 'code' command, and the provided options.
-    if ! disable_editor && [[ "$editor" == "code" ]]; then
-        if ! check_code_command_exists && ! $use_code_explicitly; then
+    if [[ "$disable_editor" != "true" ]] && [[ "$editor" == "code" ]]; then
+        check_code_command_exists
+        if [[ $? -ne 0 ]] && [[ "$use_code_explicitly" != "true" ]]; then
             echo "'code' command not found. Defaulting to 'nano' as the editor."
             editor="nano"
         fi
     fi
+
 
     # Display help
     if [[ -z "$template_name" ]]; then
