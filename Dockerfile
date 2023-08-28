@@ -159,14 +159,12 @@ RUN ln -s ~/scripts/certora_key_setup.sh ~/.local/bin/certoraKey && \
     ln -s ~/scripts/update_scripts.sh ~/.local/bin/add2-update && \
     ln -s ~/.local/bin/add2lbox ~/.local/bin/add2 
 
-# Append the script to set the symbolic link to .bashrc
-RUN echo '\n\
-# Point to the latest version of VS Code Remote server \n\
-if [ -d "${HOME}/.vscode-server/bin" ]; then \n\
-    LATEST_VSCODE_SERVER_DIR=$(ls -td ${HOME}/.vscode-server/bin/*/ | head -n 1) \n\
-    ln -sfn "${LATEST_VSCODE_SERVER_DIR}" ${HOME}/.vscode-server/bin/latest \n\
-fi \n\
-' >> ~/.bashrc
+# Setup user environment configurations 
+RUN echo '# Point to the latest version of VS Code Remote server' >> ~/.bashrc && \
+    echo 'if [ -d "${HOME}/.vscode-server/bin" ]; then' >> ~/.bashrc && \
+    echo '    LATEST_VSCODE_SERVER_DIR=$(ls -td ${HOME}/.vscode-server/bin/*/ | head -n 1)' >> ~/.bashrc && \
+    echo '    ln -sfn "${LATEST_VSCODE_SERVER_DIR}" ${HOME}/.vscode-server/bin/latest' >> ~/.bashrc && \
+    echo 'fi' >> ~/.bashrc
 
 # Append the specified PATH to .bashrc. This is a hotfix. TODO: https://github.com/Deivitto/auditor-docker/issues/31
 RUN echo 'export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"' >> ~/.bashrc
