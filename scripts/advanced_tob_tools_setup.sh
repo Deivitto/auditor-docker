@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Go home
-cd /home/whitehat
+cd $HOME
 
 # Create a virtual environment for Manticore
 python3.9 -m venv .manticore_env
