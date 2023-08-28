@@ -45,6 +45,7 @@ display_help() {
     echo "  2. analyze4 contracts scope.other.txt    - When targeting the 'contracts' directory with a custom scope file."
     echo "  3. analyze4 .                            - When you're in the base root directory and targeting it."
     echo "  4. analyze4 src https://github.com/your/repo - When specifying a GitHub URL."
+    echo 
 }
 
 # Check if no arguments are provided or -h is used
