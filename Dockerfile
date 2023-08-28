@@ -152,15 +152,12 @@ COPY motd /etc/motd
 RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 USER whitehat
 
-# Add aliases
-RUN echo "alias python3='python3.9'" >> ~/.bashrc && \
-    echo "alias pip3='python3 -m pip'" >> ~/.bashrc && \
-    echo 'alias certoraKey="~/scripts/certora_key_setup.sh"' >> ~/.bashrc && \
-    echo "alias solc-docs='bash ~/scripts/solc_docs.sh'" >> ~/.bashrc && \
-    echo "alias issue='bash ~/scripts/issue_creator.sh'" >> ~/.bashrc && \
-    echo "alias add2-update='bash ~/scripts/update_scripts.sh'" >> ~/.bashrc && \
-    echo "alias add2='add2lbox'" >> ~/.bashrc && \
-    source ~/.bashrc
+# Link scripts to ~/.local/bin for global access
+RUN ln -s ~/scripts/certora_key_setup.sh ~/.local/bin/certoraKey && \
+    ln -s ~/scripts/solc_docs.sh ~/.local/bin/solc-docs && \
+    ln -s ~/scripts/issue_creator.sh ~/.local/bin/issue && \
+    ln -s ~/scripts/update_scripts.sh ~/.local/bin/add2-update && \
+    ln -s ~/.local/bin/add2lbox ~/.local/bin/add2 
 
 # Append the script to set the symbolic link to .bashrc
 RUN echo '\n\
