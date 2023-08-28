@@ -67,7 +67,7 @@ RUN useradd -m -G sudo whitehat && \
 USER whitehat
 ENV HOME="/home/whitehat"
 ENV SCRIPTS="/home/whitehat/scripts"
-ENV PATH="${PATH}:${HOME}/.local/bin"
+ENV PATH="${PATH}:${HOME}/.local/bin:${HOME}/.vscode-server/bin/latest/bin"
 WORKDIR /home/whitehat
 
 # Install NVM
@@ -161,6 +161,15 @@ RUN echo "alias python3='python3.9'" >> ~/.bashrc && \
     echo "alias add2-update='bash ~/scripts/update_scripts.sh'" >> ~/.bashrc && \
     echo "alias add2='add2lbox'" >> ~/.bashrc && \
     source ~/.bashrc
+
+# Append the script to set the symbolic link to .bashrc
+RUN echo '\n\
+# Point to the latest version of VS Code Remote server \n\
+if [ -d "${HOME}/.vscode-server/bin" ]; then \n\
+    LATEST_VSCODE_SERVER_DIR=$(ls -td ${HOME}/.vscode-server/bin/*/ | head -n 1) \n\
+    ln -sfn "${LATEST_VSCODE_SERVER_DIR}" ${HOME}/.vscode-server/bin/latest \n\
+fi \n\
+' >> ~/.bashrc
 
 # Append the specified PATH to .bashrc. This is a hotfix. TODO: https://github.com/Deivitto/auditor-docker/issues/31
 RUN echo 'export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"' >> ~/.bashrc
