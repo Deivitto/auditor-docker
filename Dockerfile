@@ -127,9 +127,9 @@ RUN python3.9 -m pip install --no-cache-dir \
 #Vim Solidity plugins + pessimistic io slitherin
 RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
 
-# Install some popular 0.8 versions
-RUN solc-select install 0.8.20 0.8.19 0.8.18 0.8.17 0.8.16  && \
-    solc-select use 0.8.19
+# Install latest version
+RUN solc-select install 0.8.21  && \
+    solc-select use 0.8.21
 
 # Move the scripts to a directory in the PATH
 RUN mv /home/whitehat/add2lbox /home/whitehat/.local/bin/
