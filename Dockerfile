@@ -67,7 +67,7 @@ RUN useradd -m -G sudo whitehat && \
 USER whitehat
 ENV HOME="/home/whitehat"
 ENV SCRIPTS="/home/whitehat/scripts"
-ENV PATH="${PATH}:${HOME}/.local/bin:${HOME}/.vscode-server/bin/latest/bin"
+ENV PATH="${PATH}:${HOME}/.local/bin:${HOME}/.vscode-server/bin/latest/bin:${HOME}/.vscode-server/bin/latest/bin/remote-cli"
 WORKDIR /home/whitehat
 
 # Install NVM
