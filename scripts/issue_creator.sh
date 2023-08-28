@@ -6,7 +6,7 @@ TEMPLATE_NAMES=("Code4renaHM" "Codehawks" "Sherlock" "Spearbit")
 ACRONYMS=("c4" "ch" "sh" "sp")
 
 display_help() {
-    echo "Usage: issue [1-4 or acronym] [-n custom_name] [-nano|-vim]"
+    echo "Usage: issue [1-4 or acronym] [-n custom_name] [-nano|-vim|-code|-d]"
     echo "       issue -h"
     echo ""
     echo "Options:"
@@ -17,6 +17,8 @@ display_help() {
     echo "  -n      - Specify a custom name for the issue file."
     echo "  -nano   - Open the issue file in nano."
     echo "  -vim    - Open the issue file in vim."
+    echo "  -code   - Open the issue file in code. This is the default option."
+    echo "  -d      - Don't display the file in any editor."
     echo "  -h      - Display this help message."
 }
 
