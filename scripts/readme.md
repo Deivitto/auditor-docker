@@ -6,6 +6,9 @@ To start the toolbox installer, you can use:
 - `add2lbox`
 - Directly via `./scripts/installer.sh`
 
+To know more
+- `add2 -h`
+
 ## Tools & Packages Available:
 
 1. **Certora Prover + Java SDK 11 (requirement)** - Formal verification tool for smart contracts.
