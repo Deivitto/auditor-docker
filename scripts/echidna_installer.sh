@@ -12,5 +12,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
 brew install --HEAD echidna && \
 # End configuration
 brew postinstall echidna
+# Source it
+source ~/.bashrc
 # Confirmation message
-echo "Installation completed!"
+echo "Installation completed! Open a new bash or source ~/.bashrc in order to use echidna"
