@@ -26,6 +26,5 @@ To know more
 12. **Embark** - Framework for serverless Decentralized Applications using Ethereum.
 13. **Python Developer Tools** - Includes Vyper, Ape Vyper, py-solc-x, and other Python tools related to Ethereum.
 14. **VS Code Audit Extensions** - Installs common extensions used for smart contract audits when launched within VSCode.
-15. **Check installed versions** - A script to verify the versions of all installed tools.
 
 For detailed instructions or issues, refer to the individual script files.
