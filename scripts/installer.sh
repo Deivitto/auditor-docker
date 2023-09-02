@@ -17,7 +17,6 @@
 # "12" "Install Embark" \
 # "13" "Install Python Developer Tools" \
 # "14" "Install VS Code Audit Extensions" \
-# "15" "Check installed versions" \
 
 ##
 
@@ -96,7 +95,7 @@ while true; do
         --title "Menu" \
         --clear \
         --cancel-label "Exit" \
-        --menu "Please select an option:" 0 0 16 \
+        --menu "Please select an option:" 0 0 15 \
         "1" "Install Certora Prover + Java SDK 11 (requirement)" \
         "2" "Install Echidna" \
         "3" "Install Mythril" \
@@ -111,7 +110,6 @@ while true; do
         "12" "Install Embark" \
         "13" "Install Python Developer Tools" \
         "14" "Install VS Code Audit Extensions" \
-        "15" "Check installed versions" \
         2>&1 1>&3)
     exit_code=$?
     exec 3>&-
@@ -201,11 +199,6 @@ while true; do
         14)
             run_with_progress "/home/whitehat/scripts/vscode_audit_extensions.sh" "VS Code Audit Extensions"
             result="vscode_audit_extensions.sh installed successfully!"
-            display_result "Result"
-        ;;
-        15)
-            run_with_progress "/home/whitehat/scripts/versions.sh" "Checking installed versions"
-            result="versions.sh executed successfully!"
             display_result "Result"
         ;;
     esac
