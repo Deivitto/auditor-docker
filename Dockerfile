@@ -1,4 +1,24 @@
 # syntax=docker/dockerfile:1.3
+# First stage for some cargo packages
+# --- BUILDER STAGE ---
+FROM ubuntu:jammy as builder
+
+# Install necessary tools and dependencies.
+RUN apt-get update && apt-get install -y curl git build-essential pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
+
+# Install rust and cargo
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+# Install foundry
+RUN curl -L https://foundry.paradigm.xyz | bash
+ENV PATH="/root/.foundry/bin:${PATH}"
+RUN foundryup
+# Install heimdall using bifrost
+RUN curl -L http://get.heimdall.rs | bash && \
+    . /root/.cargo/env && \
+    /root/.bifrost/bin/bifrost
+
+# Now build the real docker image
 FROM ubuntu:jammy AS audit-toolbox
 
 LABEL org.opencontainers.image.authors="Deivitto"
@@ -32,6 +52,7 @@ RUN apt-get update && \
     ca-certificates \
     zip \
     unzip \
+    libssl-dev \
     pkg-config && \
     rm -rf /var/lib/apt/lists/*
 
@@ -67,7 +88,9 @@ RUN useradd -m -G sudo whitehat && \
 USER whitehat
 ENV HOME="/home/whitehat"
 ENV SCRIPTS="/home/whitehat/scripts"
-ENV PATH="${PATH}:${HOME}/.local/bin"
+# ENV PATH="${PATH}:${HOME}/.local/bin:${HOME}/.vscode-server/bin/latest/bin"
+ENV HOME="/home/whitehat"
+ENV PATH="${HOME}/.bifrost/bin:${HOME}/.foundry/bin:${HOME}/.cargo/bin:${PATH}:${HOME}/.local/bin:${HOME}/.vscode-server/bin/latest/bin"
 WORKDIR /home/whitehat
 
 # Install NVM
@@ -89,17 +112,8 @@ RUN . "$NVM_DIR/nvm.sh" && \
     # Update PATH for Yarn global binaries
     echo "export PATH=\"$(yarn global bin):$PATH\"" >> /home/whitehat/.bashrc
 
-# Install cargo, rust, and foundry
-RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
-    curl -L https://foundry.paradigm.xyz | bash && \
-    curl -L http://get.heimdall.rs | bash && \
-    PATH=$PATH:/home/whitehat/.cargo/bin && \
-    PATH=$PATH:/home/whitehat/.bifrost/bin bifrost
-
-
-ENV PATH="/home/whitehat/.foundry/bin:${PATH}"
-
-RUN foundryup
+# Install cargo, rust. Foundry and heimdall are now installed by multistage installation and copied at the end
+RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 
 
 # Create the scripts directory
 RUN mkdir -p /home/whitehat/scripts
@@ -122,14 +136,14 @@ RUN python3.9 -m pip install --no-cache-dir \
     # Clone the slitherin repository and run the setup script
     git clone https://github.com/pessimistic-io/slitherin.git ~/.slitherin && \
     cd ~/.slitherin && \
-    python3.9 setup.py develop --user
+    python3.9 setup.py develop --user 
 
 #Vim Solidity plugins + pessimistic io slitherin
 RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
 
-# Install some popular 0.8 versions
-RUN solc-select install 0.8.20 0.8.19 0.8.18 0.8.17 0.8.16  && \
-    solc-select use 0.8.19
+# Install latest version
+RUN solc-select install 0.8.21  && \
+    solc-select use 0.8.21
 
 # Move the scripts to a directory in the PATH
 RUN mv /home/whitehat/add2lbox /home/whitehat/.local/bin/
@@ -150,20 +164,37 @@ RUN chmod +x /home/whitehat/scripts/*.sh && \
 COPY motd /etc/motd
 
 RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
+
+# Set Python 3.9 as the default python3
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
+
+# Install pip for Python 3.9 and set it as the default
+RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9 && \
+    update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.9 1
+
 USER whitehat
 
-# Add aliases
-RUN echo "alias python3='python3.9'" >> ~/.bashrc && \
-    echo "alias pip3='python3 -m pip'" >> ~/.bashrc && \
-    echo 'alias certoraKey="~/scripts/certora_key_setup.sh"' >> ~/.bashrc && \
-    echo "alias solc-docs='bash ~/scripts/solc_docs.sh'" >> ~/.bashrc && \
-    echo "alias issue='bash ~/scripts/issue_creator.sh'" >> ~/.bashrc && \
-    echo "alias add2-update='bash ~/scripts/update_scripts.sh'" >> ~/.bashrc && \
-    echo "alias add2='add2lbox'" >> ~/.bashrc && \
-    source ~/.bashrc
+# Link scripts to ~/.local/bin for global access
+RUN ln -s ~/scripts/certora_key_setup.sh ~/.local/bin/certoraKey && \
+    ln -s ~/scripts/solc_docs.sh ~/.local/bin/solc-docs && \
+    ln -s ~/scripts/issue_creator.sh ~/.local/bin/issue && \
+    ln -s ~/scripts/update_scripts.sh ~/.local/bin/add2-update && \
+    ln -s ~/.local/bin/add2lbox ~/.local/bin/add2 
+
+# Setup user environment configurations. This allows `code` to be always available in case of being using vscode
+RUN echo '# Point to the latest version of VS Code Remote server' >> ~/.bashrc && \
+    echo 'if [ -d "${HOME}/.vscode-server/bin" ]; then' >> ~/.bashrc && \
+    echo '    LATEST_VSCODE_SERVER_DIR=$(ls -td ${HOME}/.vscode-server/bin/*/ | head -n 1)' >> ~/.bashrc && \
+    echo '    ln -sfn "${LATEST_VSCODE_SERVER_DIR}" ${HOME}/.vscode-server/bin/latest' >> ~/.bashrc && \
+    echo 'fi' >> ~/.bashrc
 
 # Append the specified PATH to .bashrc. This is a hotfix. TODO: https://github.com/Deivitto/auditor-docker/issues/31
 RUN echo 'export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"' >> ~/.bashrc
+
+# Copy binaries and other assets from the builder. This copies foundry and heimdall binaries.
+COPY --from=builder /root/.bifrost/bin/* /home/whitehat/.bifrost/bin/
+COPY --from=builder /root/.foundry/bin/* /home/whitehat/.foundry/bin/
+
 
 # ENTRYPOINT ["/bin/bash"] is used to set the default command for the container to start a new Bash shell.
 # This ensures that when the container is run, the user will be dropped into an interactive Bash shell by default.

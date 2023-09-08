@@ -22,11 +22,11 @@ cat > $SCRIPT_PATH <<EOL
 BASE_DIR="\$(pwd)"
 SCOPE_FILE_DEFAULT="scope.txt"
 SCRIPT_DIR="${HOME}/.4nalyz3r"
-EDITOR_FLAG=""
+EDITOR_FLAG="code"  # Set 'code' as the default editor
 
 # Help message function
 display_help() {
-    echo "Usage: analyze4 <BASE_PATH> [SCOPE_FILE.txt] [GITHUB_URL] [-vim|-nano]"
+    echo "Usage: analyze4 <BASE_PATH> [SCOPE_FILE.txt] [GITHUB_URL] [-vim|-nano|-d|-code]"
     echo
     echo "Parameters:"
     echo "  BASE_PATH        : The directory path you want to target."
@@ -34,15 +34,18 @@ display_help() {
     echo "                     If not provided, the script will look for a 'scope.txt' in the current directory."
     echo "  GITHUB_URL       : A valid GitHub URL that starts with 'http://' or 'https://'."
     echo
+    echo "Options:"
+    echo "  -vim   : Open the report using Vim."
+    echo "  -nano  : Open the report using Nano."
+    echo "  -d     : Do not open the report."
+    echo "  -code  : Open the report using Visual Studio Code (default behavior)."
+    echo
     echo "Common Usage:"
     echo "  1. analyze4 src                          - When targeting the 'src' directory and no scope file provided."
     echo "  2. analyze4 contracts scope.other.txt    - When targeting the 'contracts' directory with a custom scope file."
     echo "  3. analyze4 .                            - When you're in the base root directory and targeting it."
     echo "  4. analyze4 src https://github.com/your/repo - When specifying a GitHub URL."
-    echo
-    echo "After report generation, you can use flags to view it:"
-    echo "  -vim   : Open the report using Vim."
-    echo "  -nano  : Open the report using Nano."
+    
 }
 
 # Check if no arguments are provided or -h is used
@@ -53,8 +56,12 @@ fi
 
 while [[ \$# -gt 0 ]]; do
     case "\$1" in
-        "-vim"|"-nano")
+        "-vim"|"-nano"|"-code")
             EDITOR_FLAG="\$1"
+            shift
+            ;;
+        "-d")
+            EDITOR_FLAG=""
             shift
             ;;
         *)
@@ -85,7 +92,7 @@ mv "\$SCRIPT_DIR/report.md" "\$BASE_DIR/analyzer_report.md"
 
 # Check for report and open it if desired
 REPORT_PATH="\${BASE_DIR}/analyzer_report.md"
-if [[ -f \$REPORT_PATH ]]; then
+if [[ -f \$REPORT_PATH && -n \$EDITOR_FLAG ]]; then
     case "\$EDITOR_FLAG" in
         "-vim")
             vim \$REPORT_PATH
@@ -93,18 +100,16 @@ if [[ -f \$REPORT_PATH ]]; then
         "-nano")
             nano \$REPORT_PATH
             ;;
+        "code")
+            code \$REPORT_PATH
+            ;;
     esac
 fi
 EOL
 
-# Step 3: Add the analyze4 alias to ~/.bashrc and source it
-echo "Adding alias to ~/.bashrc..."
-echo 'alias analyze4="bash ~/scripts/4nalyz3r.sh"' >> ~/.bashrc
+# Step 3: Create a symbolic link in ~/.local/bin
 
-# Source .bashrc to reflect the changes
-source ~/.bashrc
+echo "Creating symbolic link in ~/.local/bin for global access..."
+ln -s "${SCRIPT_PATH}" ~/.local/bin/analyze4
 
-echo "Reloading bash..."
-exec bash
-
-echo "Installation complete! You can now use analyze4 command."
+echo "Installation complete! You can now use analyze4 command anywhere in your system."

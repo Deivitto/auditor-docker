@@ -1,16 +1,12 @@
 #!/bin/bash
-# Initial comment code is working
-echo "Installing brew and echidna..."
-# Export keywords
-export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
-export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX/Homebrew"
-# Start brew installation
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
-(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/whitehat/.bashrc  && \
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && \
-# Use brew to install last version of echidna
-brew install --HEAD echidna && \
-# End configuration
-brew postinstall echidna
-# Confirmation message
-echo "Installation completed!"
+# Installing echidna
+echo "[$(date)] Install echidna"
+# Getting bin version (THIS VERSION IS HARDCODED)
+wget https://github.com/crytic/echidna/releases/download/v2.2.0/echidna-2.2.0-Ubuntu-22.04.tar.gz -O echidna.tar.gz
+# Uncompressing
+tar -xvkf echidna.tar.gz
+# Moving to binaries folder for the access
+sudo mv echidna /usr/bin/
+# Removing local compressed file
+rm echidna.tar.gz
+

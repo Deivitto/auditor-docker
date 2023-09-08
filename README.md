@@ -113,6 +113,9 @@ A set of most of the famous tools in the ecosystem by different authors.
 - **Python developer kit**: It includes **Vyper**, **Ape-Vyper**, **Py-solc-x** and **pyevwasm**, can be found in `add2`
 - **4nalyz3r**: A comprehensive static analysis tool for smart contracts. Author: Picodes.
 - **Ganache** and **Truffle**: Tools such as running a personal blockchain, development environment, testing framework, and asset pipeline for Ethereum. Author: Truffle Suite.
+- **Pyrometer**: is a mix of symbolic execution, abstract interpretation, and static analysis. Author: nascentxyz
+- **Brownie**: Python-based development and testing framework for smart contracts targeting the Ethereum Virtual Machine.
+
 ### Node.js Development:
 - **NVM**: Node Version Manager to switch between different Node.js versions.
 - **Node**: Long Term Support (LTS) version.
