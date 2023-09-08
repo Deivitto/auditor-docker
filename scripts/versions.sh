@@ -1,5 +1,7 @@
 #!/bin/bash
-
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # List of commands to check
 commands=(
     "forge --version"
@@ -18,9 +20,15 @@ commands=(
     "nvm ls"
     "yarn --version"
     "solc --version"
-    "vyper --version"
-
+    "anvil -h"
+    "cast -h"
+    "chisel -h"
+    "cargo -h"
+    "cargo-clippy -h"
+    "cargo-fmt -h"
+    "clippy-driver -h"
 # installer
+    "vyper --version"
     "certoraRun --version"
     "manticore --version"
     "etheno --version"
