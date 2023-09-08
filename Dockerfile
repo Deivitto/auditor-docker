@@ -18,7 +18,7 @@ RUN curl -L http://get.heimdall.rs | bash && \
     . /root/.cargo/env && \
     /root/.bifrost/bin/bifrost
 
-# Now, revert back to your main audit-toolbox stage
+# Now build the real docker image
 FROM ubuntu:jammy AS audit-toolbox
 
 LABEL org.opencontainers.image.authors="Deivitto"
@@ -112,22 +112,8 @@ RUN . "$NVM_DIR/nvm.sh" && \
     # Update PATH for Yarn global binaries
     echo "export PATH=\"$(yarn global bin):$PATH\"" >> /home/whitehat/.bashrc
 
-# Install cargo, rust, and foundry
+# Install cargo, rust. Foundry and heimdall are now installed by multistage installation and copied at the end
 RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 
-
-# Previous installation of foundry binaries and heimdall binaries
-#     curl -L https://foundry.paradigm.xyz | bash && \
-#     curl -L http://get.heimdall.rs | bash && \
-# PATH=$PATH:/home/whitehat/.cargo/bin && \
-# PATH=$PATH:/home/whitehat/.bifrost/bin bifrost
-
-
-# Set PATH
-# ENV PATH="/home/whitehat/.foundry/bin:${PATH}"
-# ENV PATH="/home/whitehat/.cargo/bin:${PATH}"
-# ENV PATH="/home/whitehat/.bifrost/bin:/home/whitehat/.foundry/bin/:${PATH}"
-
-# RUN foundryup
 
 # Create the scripts directory
 RUN mkdir -p /home/whitehat/scripts
@@ -195,7 +181,7 @@ RUN ln -s ~/scripts/certora_key_setup.sh ~/.local/bin/certoraKey && \
     ln -s ~/scripts/update_scripts.sh ~/.local/bin/add2-update && \
     ln -s ~/.local/bin/add2lbox ~/.local/bin/add2 
 
-# Setup user environment configurations 
+# Setup user environment configurations. This allows `code` to be always available in case of being using vscode
 RUN echo '# Point to the latest version of VS Code Remote server' >> ~/.bashrc && \
     echo 'if [ -d "${HOME}/.vscode-server/bin" ]; then' >> ~/.bashrc && \
     echo '    LATEST_VSCODE_SERVER_DIR=$(ls -td ${HOME}/.vscode-server/bin/*/ | head -n 1)' >> ~/.bashrc && \
@@ -205,7 +191,7 @@ RUN echo '# Point to the latest version of VS Code Remote server' >> ~/.bashrc &
 # Append the specified PATH to .bashrc. This is a hotfix. TODO: https://github.com/Deivitto/auditor-docker/issues/31
 RUN echo 'export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"' >> ~/.bashrc
 
-# Copy binaries and other assets from the builder
+# Copy binaries and other assets from the builder. This copies foundry and heimdall binaries.
 COPY --from=builder /root/.bifrost/bin/* /home/whitehat/.bifrost/bin/
 COPY --from=builder /root/.foundry/bin/* /home/whitehat/.foundry/bin/
 
