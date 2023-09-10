@@ -17,31 +17,6 @@ Our beta version is up and running! I'm keen on keeping it fresh with the latest
 3. [Scripts](#scripts)
 4. [Troubleshooting](#troubleshooting)
 
-## Basic build 
-Clone the repo and `cd` into it
-```bash
-git clone https://github.com/Deivitto/auditor-docker.git && \
-cd auditor-docker
-```
-
-Then, within the directory where the Dockerfile is
-```bash
-docker build -t whitehat-machine .  
-```
-
-Then just run
-```bash
-docker run -it whitehat-machine 
-```
-
-## Share a directory
-To run the current directory inside the docker machine launch a command like this one
-```bash
-docker run -it -v "$PWD":/code whitehat-machine
-```
-
-Now, at the docker machine, a directory called `/code` will include the current directory from parent operating system.
-
 ## One-line command
 
 The fast command to install the machine is
@@ -49,8 +24,10 @@ The fast command to install the machine is
 rm -rf auditor-docker && \
 git clone https://github.com/Deivitto/auditor-docker.git && \
 cd auditor-docker && \
-docker build -t whitehat-machine . && \
-docker run -it -d --name devops199 whitehat-machine
+git fetch origin && \
+git checkout -b OpenSense_Demo origin/OpenSense_Demo && \
+docker build -t open-sense-demo . && \
+docker run -it --ulimit stack=100000000:100000000 -d --name machine1 open-sense-demo 
 ```
 
 >NOTE: This command uses `-d` to run the docker machine in the background, with the objective of using the VSCode docker extension.
@@ -59,12 +36,7 @@ docker run -it -d --name devops199 whitehat-machine
 ## To relaunch the docker instance
 Run `docker start` with the name of your instance. If the [one-line command](#one-line-command) was used, this will be
 ```bash
-docker start devops199
-```
-
-## To increase maximum stack size (i.e. to use manticore)
-```bash
-docker run -it --ulimit stack=100000000:100000000 -d --name devops199 whitehat-machine 
+docker start machine1
 ```
 
 ## Credentials
