@@ -229,6 +229,7 @@ branch 'OpenSense_Demo' set up to track 'origin/OpenSense_Demo'.
  => => naming to docker.io/library/open-sense-demo                                                     0.0s
 ```
 </details>
+
 # Auditor Toolbox for Ethereum Smart Contracts
 
 Easily deploy an auditing environment for Ethereum smart contracts using this Docker image.
