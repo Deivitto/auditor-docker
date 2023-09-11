@@ -141,6 +141,9 @@ ngmi
 ```
 
 # Time metrics:
+<details>
+  <summary>Total: [+] Building 589.3s</summary>
+  
 ```bash
 $ rm -rf auditor-docker && \
 git clone https://github.com/Deivitto/auditor-docker.git && \
@@ -224,10 +227,8 @@ branch 'OpenSense_Demo' set up to track 'origin/OpenSense_Demo'.
  => => exporting layers                                                                               14.6s
  => => writing image sha256:ff21d8e4a4fe377a7551449afdf9e4d420b9c0ded70be7b3a577c42c4120737a           0.0s
  => => naming to docker.io/library/open-sense-demo                                                     0.0s
-
-Total: [+] Building 589.3s
 ```
-
+</details>
 # Auditor Toolbox for Ethereum Smart Contracts
 
 Easily deploy an auditing environment for Ethereum smart contracts using this Docker image.
