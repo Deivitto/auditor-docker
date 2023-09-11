@@ -27,17 +27,112 @@ cd auditor-docker && \
 git fetch origin && \
 git checkout -b OpenSense_Demo origin/OpenSense_Demo && \
 docker build -t open-sense-demo . && \
-docker run -it --ulimit stack=100000000:100000000 -d --name machine1 open-sense-demo 
+docker run -it  -d --name machine1 open-sense-demo # for manticore use --ulimit stack=100000000:100000000
 ```
 
 >NOTE: This command uses `-d` to run the docker machine in the background, with the objective of using the VSCode docker extension.
 >After installing the extension, run the command palette and type `Attach to running container...`. This command will attach the instance of the machine to the VSCode instance.
+
+## One use
+```bash
+docker run -it --rm --name temporal_machine open-sense-demo
+```
 
 ## To relaunch the docker instance
 Run `docker start` with the name of your instance. If the [one-line command](#one-line-command) was used, this will be
 ```bash
 docker start machine1
 ```
+
+> You can also use docker interface
+
+## Demo flows
+### Before uses
+- What's inside?
+
+### Config / Installations
+For the very start, let's install some tools
+```bash
+add2
+```
+
+Alternatively we can just install them as scripts
+```bash
+bash scripts/analyzer_installer.sh
+bash scripts/medusa_fuzzer.sh
+bash scripts/mythril_install.sh
+bash scripts/pyrometer.sh
+bash scripts/versions.sh
+```
+
+### Extra: Update your scripts
+```bash
+rm scripts/versions.sh
+add2-update
+```
+
+### Repo set and compile
+```bash
+git clone https://github.com/code-423n4/2023-01-popcorn
+cd 2023-01-popcorn
+forge install
+yarn install
+cp env.example .env
+solc-select install 0.8.15
+solc-select use 0.8.15
+```
+
+### Get the scope of the contract
+- Surya: Solidity Metrics
+
+### Analyzers
+```bash
+mkdir demo_outputs
+slither . --checklist --config-file > demo_outputs/slither_output.md
+analyze4 src 
+myth analyze --solc-json remappings.json --solv 0.8.15 --execution-timeout 1200 > demo_outputs/myth_output.md
+
+```
+
+### Write issues
+```bash
+issue c4 -n DemoIssue1 -code
+```
+
+### Fuzzers
+```bash
+# forge test
+forge build
+forge test --no-match-contract 'Abstract' --gas-report
+medusa . WIP
+echidna . WIP
+```
+### Formal verification
+```bash
+halmos
+```
+### Others
+```bash
+pyro WIP
+heimdall WIP
+```
+
+### Local Ethereum Node 
+```bash
+ganache
+anvil
+```
+
+> Anvil example use: https://nader.mirror.xyz/6Mn3HjrqKLhHzu2balLPv4SqE5a-oEESl4ycpRkWFsc
+
+### Not included for the demo
+- Certora Prover
+- Manticore
+- Brownie
+- Circom
+- Nargo
+- Embark
+- Python tools
 
 ## Credentials
 The default password: 
