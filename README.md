@@ -61,7 +61,7 @@ Alternatively we can just install them as scripts
 bash scripts/analyzer_installer.sh
 bash scripts/medusa_fuzzer.sh
 bash scripts/mythril_install.sh
-bash scripts/pyrometer.sh
+bash scripts/pyrometer_installer.sh
 bash scripts/versions.sh
 ```
 
@@ -73,13 +73,13 @@ add2-update
 
 ### Repo set and compile
 ```bash
-git clone https://github.com/code-423n4/2023-01-popcorn
-cd 2023-01-popcorn
+git clone REPOSITORY### Change this
+cd REPOSITORY
 forge install
 yarn install
-cp env.example .env
-solc-select install 0.8.15
-solc-select use 0.8.15
+cp .env.example .env
+solc-select install SOLC_VERSION ## CHANGE THIS
+solc-select use SOLC_VERSION
 ```
 
 ### Get the scope of the contract
@@ -88,9 +88,9 @@ solc-select use 0.8.15
 ### Analyzers
 ```bash
 mkdir demo_outputs
-slither . --checklist --config-file > demo_outputs/slither_output.md
+slither . --checklist > demo_outputs/slither_output.md
 analyze4 src 
-myth analyze --solc-json remappings.json --solv 0.8.15 --execution-timeout 1200 > demo_outputs/myth_output.md
+myth analyze --solc-json remappings.json --solv SOLC_VERSION --execution-timeout 1200 > demo_outputs/myth_output.md
 
 ```
 
@@ -103,19 +103,30 @@ issue c4 -n DemoIssue1 -code
 ```bash
 # forge test
 forge build
-forge test --no-match-contract 'Abstract' --gas-report
-medusa . WIP
-echidna . WIP
+forge test -vvvv
+medusa fuzz --target contract.sol --deployment-order ContractName
+echidna tests/solidity/basic/flags.sol
 ```
 ### Formal verification
 ```bash
 halmos
 ```
 ### Others
+
 ```bash
-pyro WIP
-heimdall WIP
+heimdall decompile 0xe622a5d06b5ff254c1cc3ad23d72002b34be3be6 --rpc-url https://polygon-mainnet.g.alchemy.com/v2/KEY --include-sol # https://polygonscan.com/address/0xe622a5d06b5ff254c1cc3ad23d72002b34be3be6#code
+# https://etherscan.io/address/0xA69babEF1cA67A37Ffaf7a485DfFF3382056e78C
 ```
+> Heimdall examples: https://www.youtube.com/watch?v=tDFA8cnHoCY&t=7004s7
+
+Pyrometer for bounce analysis
+
+```bash
+# forge remappings > remappings.txt
+pyrometer src/vault/adapter/yearn/YearnAdapter.sol --remappings remappings.txt
+```
+
+> Pyrometer example: https://github.com/nascentxyz/pyrometer#quick-tips
 
 ### Local Ethereum Node 
 ```bash
