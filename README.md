@@ -140,6 +140,94 @@ The default password:
 ngmi
 ```
 
+# Time metrics:
+```bash
+$ rm -rf auditor-docker && \
+git clone https://github.com/Deivitto/auditor-docker.git && \
+cd auditor-docker && \
+git fetch origin && \
+git checkout -b OpenSense_Demo origin/OpenSense_Demo && \
+docker build -t open-sense-demo . && \
+docker run -it  -d --name machine1 open-sense-demo
+Cloning into 'auditor-docker'...
+remote: Enumerating objects: 628, done.
+remote: Counting objects: 100% (254/254), done.
+remote: Compressing objects: 100% (154/154), done.
+remote: Total 628 (delta 161), reused 153 (delta 100), pack-reused 374
+Receiving objects:  99% (622/628)
+Receiving objects: 100% (628/628), 181.93 KiB | 1.80 MiB/s, done.
+Resolving deltas: 100% (353/353), done.
+Switched to a new branch 'OpenSense_Demo'
+branch 'OpenSense_Demo' set up to track 'origin/OpenSense_Demo'.
+
+[+] Building 589.3s (45/45) FINISHED
+ => [internal] load build definition from Dockerfile                                                   0.1s
+ => => transferring dockerfile: 7.78kB                                                                 0.0s
+ => [internal] load .dockerignore                                                                      0.0s
+ => => transferring context: 2B                                                                        0.0s
+ => resolve image config for docker.io/docker/dockerfile:1.3                                           1.8s
+ => docker-image://docker.io/docker/dockerfile:1.3@sha256:42399d4635eddd7a9b8a24be879d2f9a930d0ed040a  0.9s
+ => => resolve docker.io/docker/dockerfile:1.3@sha256:42399d4635eddd7a9b8a24be879d2f9a930d0ed040a6132  0.0s
+ => => sha256:42399d4635eddd7a9b8a24be879d2f9a930d0ed040a61324cfdf59ef1357b3b2 2.00kB / 2.00kB         0.0s
+ => => sha256:93f32bd6dd9004897fed4703191f48924975081860667932a4df35ba567d7426 528B / 528B             0.0s
+ => => sha256:e532695ddd93ca7c85a816c67afdb352e91052fab7ac19a675088f80915779a7 1.21kB / 1.21kB         0.0s
+ => => sha256:24a639a53085eb680e1d11618ac62f3977a3926fedf5b8471ace519b8c778030 9.67MB / 9.67MB         0.7s
+ => => extracting sha256:24a639a53085eb680e1d11618ac62f3977a3926fedf5b8471ace519b8c778030              0.1s
+ => [internal] load build definition from Dockerfile                                                   0.0s
+ => [internal] load .dockerignore                                                                      0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:jammy                                        1.3s
+ => [audit-toolbox  1/31] FROM docker.io/library/ubuntu:jammy@sha256:aabed3296a3d45cede1dc866a24476c4  3.4s
+ => => resolve docker.io/library/ubuntu:jammy@sha256:aabed3296a3d45cede1dc866a24476c4d7e093aa806263c2  0.0s
+ => => sha256:aabed3296a3d45cede1dc866a24476c4d7e093aa806263c27ddaadbdce3c1054 1.13kB / 1.13kB         0.0s
+ => => sha256:b492494d8e0113c4ad3fe4528a4b5ff89faa5331f7d52c5c138196f69ce176a6 424B / 424B             0.0s
+ => => sha256:c6b84b685f35f1a5d63661f5d4aa662ad9b7ee4f4b8c394c022f25023c907b65 2.30kB / 2.30kB         0.0s
+ => => sha256:445a6a12be2be54b4da18d7c77d4a41bc4746bc422f1f4325a60ff4fc7ea2e5d 29.54MB / 29.54MB       2.6s
+ => => extracting sha256:445a6a12be2be54b4da18d7c77d4a41bc4746bc422f1f4325a60ff4fc7ea2e5d              0.6s
+ => [internal] load build context                                                                      0.1s
+ => => transferring context: 31.72kB                                                                   0.0s
+ => [audit-toolbox  2/31] RUN apt-get update &&     DEBIAN_FRONTEND=noninteractive apt-get install   307.7s
+ => [builder 2/6] RUN apt-get update && apt-get install -y curl git build-essential pkg-config libss  73.4s
+ => [builder 3/6] RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y         54.5s
+ => [builder 4/6] RUN curl -L https://foundry.paradigm.xyz | bash                                      1.8s
+ => [builder 5/6] RUN foundryup                                                                       10.0s
+ => [builder 6/6] RUN curl -L http://get.heimdall.rs | bash &&     . /root/.cargo/env &&     /root/  239.2s
+ => [audit-toolbox  3/31] RUN add-apt-repository -y ppa:ethereum/ethereum &&     add-apt-repository   45.0s
+ => [audit-toolbox  4/31] RUN curl -fsSL https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-  22.0s
+ => [audit-toolbox  5/31] RUN useradd -m -G sudo whitehat &&     echo 'whitehat ALL=(ALL) NOPASSWD: A  0.6s
+ => [audit-toolbox  6/31] WORKDIR /home/whitehat                                                       0.0s
+ => [audit-toolbox  7/31] RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.s  2.9s
+ => [audit-toolbox  8/31] RUN . "/home/whitehat/.nvm/nvm.sh" &&     nvm install --lts &&     nvm al  110.9s
+ => [audit-toolbox  9/31] RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -  28.6s
+ => [audit-toolbox 10/31] RUN mkdir -p /home/whitehat/scripts                                          0.5s
+ => [audit-toolbox 11/31] RUN mkdir -p /home/whitehat/templates                                        0.5s
+ => [audit-toolbox 12/31] RUN echo '#!/bin/bash\n/home/whitehat/scripts/installer.sh' > /home/whiteha  0.6s
+ => [audit-toolbox 13/31] RUN chmod +x /home/whitehat/add2lbox                                         0.6s
+ => [audit-toolbox 14/31] RUN python3.9 -m pip install --no-cache-dir pip setuptools wheel             2.4s
+ => [audit-toolbox 15/31] RUN python3.9 -m pip install --no-cache-dir     solc-select     slither-an  28.8s
+ => [audit-toolbox 16/31] RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugi  1.3s
+ => [audit-toolbox 17/31] RUN solc-select install 0.8.21  &&     solc-select use 0.8.21                3.3s
+ => [audit-toolbox 18/31] RUN mv /home/whitehat/add2lbox /home/whitehat/.local/bin/                    0.6s
+ => [audit-toolbox 19/31] COPY /scripts/*.sh /home/whitehat/scripts/                                   0.0s
+ => [audit-toolbox 20/31] COPY /scripts/readme.md /home/whitehat/scripts/readme.md                     0.0s
+ => [audit-toolbox 21/31] COPY /templates/* /home/whitehat/templates/                                  0.0s
+ => [audit-toolbox 22/31] RUN chmod +x /home/whitehat/scripts/*.sh &&     chown -R whitehat:whitehat   0.5s
+ => [audit-toolbox 23/31] COPY motd /etc/motd                                                          0.0s
+ => [audit-toolbox 24/31] RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc                          0.5s
+ => [audit-toolbox 25/31] RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3  0.5s
+ => [audit-toolbox 26/31] RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9 &&     update-alt  6.5s
+ => [audit-toolbox 27/31] RUN ln -s ~/scripts/certora_key_setup.sh ~/.local/bin/certoraKey &&     ln   0.6s
+ => [audit-toolbox 28/31] RUN echo '# Point to the latest version of VS Code Remote server' >> ~/.bas  0.5s
+ => [audit-toolbox 29/31] RUN echo 'export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node  0.6s
+ => [audit-toolbox 30/31] COPY --from=builder /root/.bifrost/bin/* /home/whitehat/.bifrost/bin/        0.1s
+ => [audit-toolbox 31/31] COPY --from=builder /root/.foundry/bin/* /home/whitehat/.foundry/bin/        0.2s
+ => exporting to image                                                                                14.6s
+ => => exporting layers                                                                               14.6s
+ => => writing image sha256:ff21d8e4a4fe377a7551449afdf9e4d420b9c0ded70be7b3a577c42c4120737a           0.0s
+ => => naming to docker.io/library/open-sense-demo                                                     0.0s
+
+Total: [+] Building 589.3s
+```
+
 # Auditor Toolbox for Ethereum Smart Contracts
 
 Easily deploy an auditing environment for Ethereum smart contracts using this Docker image.
