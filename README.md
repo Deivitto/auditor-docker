@@ -132,6 +132,8 @@ pyrometer src/vault/adapter/yearn/YearnAdapter.sol --remappings remappings.txt
 ```bash
 ganache
 anvil
+
+cast
 ```
 
 > Anvil example use: https://nader.mirror.xyz/6Mn3HjrqKLhHzu2balLPv4SqE5a-oEESl4ycpRkWFsc
