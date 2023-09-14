@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ~/
+cd $HOME
 TEMPLATES_DIR="templates"
 ISSUES_DIR="${TEMPLATES_DIR}/issues"
 TEMPLATE_NAMES=("Code4renaHM" "CodeHawks" "Sherlock" "Spearbit")
