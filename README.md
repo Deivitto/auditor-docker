@@ -159,5 +159,6 @@ This would get the relative path of the src folder where all the contracts are (
 # Troubleshooting
 For general information, go to [Troubleshooting](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting) section in the wiki
 - [v0.0.1: `yarn`: command not found](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#yarn-command-not-found)
+- [v0.1.0: `heimdall`: error: failed to create file "/home/whitehat/.bifrost/config.toml".](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#heimdall-failed-to-create-file)
 - [Parent system out of time](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#parent-system-out-of-time)
 - [`code` not working](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#code-not-working)
