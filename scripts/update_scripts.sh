@@ -5,7 +5,6 @@ REPO_URL="https://github.com/Deivitto/auditor-docker.git"
 TEMP_DIR=$(mktemp -d)
 LOCAL_DIR="$HOME"
 
-
 # Clone the repo to the temporary directory
 git clone "$REPO_URL" "$TEMP_DIR"
 
