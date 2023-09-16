@@ -197,8 +197,8 @@ COPY --from=builder /root/.foundry/bin/* /home/whitehat/.foundry/bin/
 
 # Give the new folders whitehat ownership
 USER root
-RUN chown -R whitehat:whitehat /home/whitehat/.bifrost/bin/ /home/whitehat/.foundry/bin/ && \
-    chmod -R 755 /home/whitehat/.bifrost/bin/ /home/whitehat/.foundry/bin/
+RUN chown -R whitehat:whitehat /home/whitehat/.bifrost/ /home/whitehat/.foundry/ && \
+    chmod -R 755 /home/whitehat/.bifrost/ /home/whitehat/.foundry/
 USER whitehat
 
 # ENTRYPOINT ["/bin/bash"] is used to set the default command for the container to start a new Bash shell.
