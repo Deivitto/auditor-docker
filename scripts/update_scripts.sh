@@ -61,8 +61,9 @@ check_differences() {
     fi
 }
 
-# Check differences for scripts and templates
+# Check differences for scripts
 check_differences "scripts"
+# Do the same for templates
 check_differences "templates"
 
 # Clean up
