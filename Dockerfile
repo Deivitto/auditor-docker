@@ -195,6 +195,11 @@ RUN echo 'export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modu
 COPY --from=builder /root/.bifrost/bin/* /home/whitehat/.bifrost/bin/
 COPY --from=builder /root/.foundry/bin/* /home/whitehat/.foundry/bin/
 
+# Give the new folders whitehat ownership
+USER root
+RUN chown -R whitehat:whitehat /home/whitehat/.bifrost/ /home/whitehat/.foundry/ && \
+    chmod -R 755 /home/whitehat/.bifrost/ /home/whitehat/.foundry/
+USER whitehat
 
 # ENTRYPOINT ["/bin/bash"] is used to set the default command for the container to start a new Bash shell.
 # This ensures that when the container is run, the user will be dropped into an interactive Bash shell by default.

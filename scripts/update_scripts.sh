@@ -3,7 +3,7 @@
 # Constants
 REPO_URL="https://github.com/Deivitto/auditor-docker.git"
 TEMP_DIR=$(mktemp -d)
-LOCAL_DIR="$(dirname "$0")/.."  # One level up to cover both scripts and templates
+LOCAL_DIR="$HOME"
 
 # Clone the repo to the temporary directory
 git clone "$REPO_URL" "$TEMP_DIR"
@@ -61,8 +61,9 @@ check_differences() {
     fi
 }
 
-# Check differences for scripts and templates
+# Check differences for scripts
 check_differences "scripts"
+# Do the same for templates
 check_differences "templates"
 
 # Clean up
