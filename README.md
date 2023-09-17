@@ -74,7 +74,7 @@ ngmi
 ```
 
 # Time metrics:
-<details>
+<details> 
   <summary>Total: [+] Building 589.3s</summary>
   
 ```bash
