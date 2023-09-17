@@ -180,12 +180,15 @@ RUN ln -s ~/scripts/certora_key_setup.sh ~/.local/bin/certoraKey && \
     ln -s ~/scripts/issue_creator.sh ~/.local/bin/issue && \
     ln -s ~/scripts/update_scripts.sh ~/.local/bin/add2-update && \
     ln -s ~/.local/bin/add2lbox ~/.local/bin/add2 
+    
 
-# Setup user environment configurations. This allows `code` to be always available in case of being using vscode
+# Setup user environment configurations to .bashrc. This allows `code` to be always available in case of being using vscode
+# 1 - If exists. 2 - Get latest vscode version. 3 - Create symbolic link to latest. 4 - Create symbolic link to code itself.
 RUN echo '# Point to the latest version of VS Code Remote server' >> ~/.bashrc && \
     echo 'if [ -d "${HOME}/.vscode-server/bin" ]; then' >> ~/.bashrc && \
     echo '    LATEST_VSCODE_SERVER_DIR=$(ls -td ${HOME}/.vscode-server/bin/*/ | head -n 1)' >> ~/.bashrc && \
     echo '    ln -sfn "${LATEST_VSCODE_SERVER_DIR}" ${HOME}/.vscode-server/bin/latest' >> ~/.bashrc && \
+    echo '    sudo ln -sfn "${LATEST_VSCODE_SERVER_DIR}/bin/remote-cli/code" /usr/local/bin/code' >> ~/.bashrc && \
     echo 'fi' >> ~/.bashrc
 
 # Append the specified PATH to .bashrc. This is a hotfix. TODO: https://github.com/Deivitto/auditor-docker/issues/31
