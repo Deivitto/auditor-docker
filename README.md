@@ -49,8 +49,10 @@ The fast command to install the machine is
 rm -rf auditor-docker && \
 git clone https://github.com/Deivitto/auditor-docker.git && \
 cd auditor-docker && \
-docker build -t whitehat-machine . && \
-docker run -it -d --name devops199 whitehat-machine
+git fetch origin && \
+git checkout -b DebugMac origin/DebugMac && \
+docker build -t debug-mac . && \
+docker run -it --rm debug-mac
 ```
 
 >NOTE: This command uses `-d` to run the docker machine in the background, with the objective of using the VSCode docker extension.
