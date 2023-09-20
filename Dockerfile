@@ -56,20 +56,34 @@ RUN apt-get update && \
     pkg-config && \
     rm -rf /var/lib/apt/lists/*
 
-# Add Ethereum and Yices PPA repositories and install packages
-RUN add-apt-repository -y ppa:ethereum/ethereum && \
-    add-apt-repository -y ppa:sri-csl/formal-methods && \
-    add-apt-repository -y ppa:deadsnakes/ppa  && \
-    apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    ethereum \
+# Add Ethereum PPA repository
+RUN add-apt-repository -y ppa:ethereum/ethereum
+
+# Add Yices PPA repository
+RUN add-apt-repository -y ppa:sri-csl/formal-methods
+
+# Add deadsnakes PPA repository
+RUN add-apt-repository -y ppa:deadsnakes/ppa
+
+# Update the package lists
+RUN apt-get update
+
+# Install ethereum
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ethereum
+
+# Install Python 3.9 and related packages
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     python3.9 \
     python3.9-dev \
     python3.9-venv \
     python3-pip \
-    python3.9-distutils \
-    yices2 && \
-    rm -rf /var/lib/apt/lists/*
+    python3.9-distutils
+
+# Install yices2
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends yices2
+
+# Clean up to reduce image size
+RUN rm -rf /var/lib/apt/lists/*
 
 # Install Julia
 RUN curl -fsSL https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.1-linux-x86_64.tar.gz -o julia.tar.gz && \
