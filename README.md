@@ -52,12 +52,13 @@ cd auditor-docker && \
 git fetch origin && \
 git checkout -b DebugMac origin/DebugMac && \
 docker build -t debug-mac . && \
-docker run -it --rm debug-mac
+docker run -it debug-mac
 ```
 
 >NOTE: This command uses `-d` to run the docker machine in the background, with the objective of using the VSCode docker extension.
 >After installing the extension, run the command palette and type `Attach to running container...`. This command will attach the instance of the machine to the VSCode instance.
-
+>Use docker run --rm to use create a 1 use container (deleted on exit)
+ 
 ## To relaunch the docker instance
 Run `docker start` with the name of your instance. If the [one-line command](#one-line-command) was used, this will be
 ```bash
