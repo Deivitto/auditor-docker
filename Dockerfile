@@ -80,7 +80,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     python3.9-distutils
 
 # Install yices2
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends yices2
+# RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends yices2 # TODO: Here fails at MacOs Don't know why yet
 
 # Clean up to reduce image size
 RUN rm -rf /var/lib/apt/lists/*
