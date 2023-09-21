@@ -67,8 +67,8 @@ RUN add-apt-repository -y ppa:ethereum/ethereum && \
     python3.9-dev \
     python3.9-venv \
     python3-pip \
-    python3.9-distutils \
-    yices2 && \
+    # yices2 \ TODO: commented until I debug this on Mac. For Linux or Win users, you can uncomment this
+    python3.9-distutils && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Julia
