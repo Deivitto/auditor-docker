@@ -5,6 +5,7 @@ The Auditor Toolbox essential goal is to pack all the essential auditor tools in
 Our beta version is up and running! I'm keen on keeping it fresh with the latest tools and versions. Got suggestions or updates? Don't hesitate to reach out or pitch in your ideas!
 
 
+> Prerequisites [Docker guide](https://github.com/Deivitto/auditor-docker/wiki/Docker-guide)
 ## Index
 
 1. Auditor Toolbox Setup
