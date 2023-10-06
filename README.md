@@ -238,3 +238,4 @@ For general information, go to [Troubleshooting](https://github.com/Deivitto/aud
 - [v0.1.0: `heimdall`: error: failed to create file "/home/whitehat/.bifrost/config.toml".](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#heimdall-failed-to-create-file)
 - [Parent system out of time](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#parent-system-out-of-time)
 - [`code` not working](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#code-not-working)
+- [`Mac OS` not working](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#mac-os-not-working)
