@@ -10,7 +10,7 @@ Our beta version is up and running! I'm keen on keeping it fresh with the latest
 
 1. Auditor Toolbox Setup
     * [1.1 Basic build](#basic-build)
-    * [1.2 Share a directory](#share-a-directory)
+    * [1.2 Other options](#other-options)
     * [1.3 One-line command](#one-line-command)
     * [1.4 To relaunch the docker instance](#to-relaunch-the-docker-instance)
     * [1.5 Credentials](#credentials)
@@ -35,14 +35,6 @@ Then just run
 docker run -it whitehat-machine 
 ```
 
-## Share a directory
-To run the current directory inside the docker machine launch a command like this one
-```bash
-docker run -it -v "$PWD":/home/whitehat/any-shared-folder-name whitehat-machine
-```
-
-Now, at the docker machine, a directory called `/any-shared-folder-name` will include the current directory from parent operating system.
-
 ## One-line command
 
 The fast command to install the machine is
@@ -57,16 +49,9 @@ docker run -it -d --name devops199 whitehat-machine
 >NOTE: This command uses `-d` to run the docker machine in the background, with the objective of using the VSCode docker extension.
 >After installing the extension, run the command palette and type `Attach to running container...`. This command will attach the instance of the machine to the VSCode instance.
 
-## To relaunch the docker instance
-Run `docker start` with the name of your instance. If the [one-line command](#one-line-command) was used, this will be
-```bash
-docker start devops199
-```
-
-## To increase maximum stack size (i.e. to use manticore)
-```bash
-docker run -it --ulimit stack=100000000:100000000 -d --name devops199 whitehat-machine 
-```
+## Other options
+For other things related to Docker itself, such as sharing a folder, use VSCode extension, restart docker container, change limite stack size, etc:
+- Read the [docker guide](https://github.com/Deivitto/auditor-docker/wiki/Docker-guide) I attached in the wiki.
 
 ## Credentials
 The default password: 
