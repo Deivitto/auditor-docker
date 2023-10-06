@@ -12,7 +12,7 @@ Our beta version is up and running! I'm keen on keeping it fresh with the latest
     * [1.1 Basic build](#basic-build)
     * [1.2 Other options](#other-options)
     * [1.3 One-line command](#one-line-command)
-    * [1.5 Credentials](#credentials)
+    * [1.4 Credentials](#credentials)
 2. [Auditor Toolbox for Ethereum Smart Contracts](#auditor-toolbox-for-ethereum-smart-contracts)
 3. [Scripts](#scripts)
 4. [Troubleshooting](#troubleshooting)
