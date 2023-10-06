@@ -38,10 +38,10 @@ docker run -it whitehat-machine
 ## Share a directory
 To run the current directory inside the docker machine launch a command like this one
 ```bash
-docker run -it -v "$PWD":/code whitehat-machine
+docker run -it -v "$PWD":/home/whitehat/any-shared-folder-name whitehat-machine
 ```
 
-Now, at the docker machine, a directory called `/code` will include the current directory from parent operating system.
+Now, at the docker machine, a directory called `/any-shared-folder-name` will include the current directory from parent operating system.
 
 ## One-line command
 
