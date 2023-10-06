@@ -12,7 +12,6 @@ Our beta version is up and running! I'm keen on keeping it fresh with the latest
     * [1.1 Basic build](#basic-build)
     * [1.2 Other options](#other-options)
     * [1.3 One-line command](#one-line-command)
-    * [1.4 To relaunch the docker instance](#to-relaunch-the-docker-instance)
     * [1.5 Credentials](#credentials)
 2. [Auditor Toolbox for Ethereum Smart Contracts](#auditor-toolbox-for-ethereum-smart-contracts)
 3. [Scripts](#scripts)
@@ -35,6 +34,10 @@ Then just run
 docker run -it whitehat-machine 
 ```
 
+## Other options
+For other things related to Docker itself, such as sharing a folder, use VSCode extension, restart docker container, change limite stack size, etc:
+- Read the [docker guide](https://github.com/Deivitto/auditor-docker/wiki/Docker-guide) I attached in the wiki.
+
 ## One-line command
 
 The fast command to install the machine is
@@ -49,9 +52,6 @@ docker run -it -d --name devops199 whitehat-machine
 >NOTE: This command uses `-d` to run the docker machine in the background, with the objective of using the VSCode docker extension.
 >After installing the extension, run the command palette and type `Attach to running container...`. This command will attach the instance of the machine to the VSCode instance.
 
-## Other options
-For other things related to Docker itself, such as sharing a folder, use VSCode extension, restart docker container, change limite stack size, etc:
-- Read the [docker guide](https://github.com/Deivitto/auditor-docker/wiki/Docker-guide) I attached in the wiki.
 
 ## Credentials
 The default password: 
