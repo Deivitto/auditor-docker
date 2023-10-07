@@ -149,19 +149,9 @@ branch 'OpenSense_Demo' set up to track 'origin/OpenSense_Demo'.
 ```
 </details>
 
-# Auditor Toolbox for Ethereum Smart Contracts
+## Auditor Toolbox for Ethereum Smart Contracts
 
 Easily deploy an auditing environment for Ethereum smart contracts using this Docker image.
-
-### Quick Start
-
-After the docker is builded, you may be missing some tool not installed by default, if so, execute the `add2` command:
-
-```bash
-add2
-```
-
-Select the option you want to install and voila, you're all set!
 
 ## Features
 ### Base Setup:
@@ -203,11 +193,15 @@ Additionally, the image sets up an environment for a user named `whitehat` and i
 
 ## Scripts
 ### add2
-The toolbox includes scripts to fast install multiple packages, utilities or dependencies that maybe not all auditors but a considerable part may use. To launch the install script:
+The toolbox includes scripts to fast install multiple packages, utilities or dependencies that maybe not all auditors but a considerable part may use. 
+
+After the docker is builded, you may be missing some tool not installed by default, if so, execute the `add2` command:
 
 ```bash
 add2 # this is a shortcut of add2lbox
 ```
+
+Select the option you want to install and voila, you're all set!
 
 ### add2-update
 It also includes a script to update the scripts and templates folder with the latest version of this github:
