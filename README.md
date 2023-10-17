@@ -41,6 +41,7 @@ docker run -it whitehat-machine
 ## Other options
 For other things related to Docker itself, such as sharing a folder, use [VSCode extension](https://github.com/Deivitto/auditor-docker/wiki/Docker-guide#vs-code-work-with-docker), restart docker container, change limite stack size, etc:
 - Read the [docker guide](https://github.com/Deivitto/auditor-docker/wiki/Docker-guide) I attached in the wiki.
+> Quick tip: To restart a container use `docker start NAME_OF_THE_CONTAINER or ID_OF_THE_CONTAINER`
 
 ## One-line command
 
