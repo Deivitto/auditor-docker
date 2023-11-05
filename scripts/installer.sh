@@ -23,6 +23,14 @@
 DIALOG_CANCEL=1
 DIALOG_ESC=255
 
+check_installed() {
+    if command -v $1 &>/dev/null; then
+        echo "- ✅ Installed"
+    else
+        echo "- Not installed"
+    fi
+}
+
 display_help() {
     echo "Usage: $0 [-h]"
     echo
@@ -96,20 +104,20 @@ while true; do
         --clear \
         --cancel-label "Exit" \
         --menu "Please select an option:" 0 0 15 \
-        "1" "Install Certora Prover + Java SDK 11 (requirement)" \
-        "2" "Install Echidna" \
-        "3" "Install Mythril" \
-        "4" "Install Manticore" \
-        "5" "Install Medusa Fuzzer" \
-        "6" "Install 4nalyz3r" \
-        "7" "Install Pyrometer" \
-        "8" "Install Brownie" \
-        "9" "Install Etheno" \
-        "10" "Install Noir (Nargo)" \
-        "11" "Install Circom" \
+"1" "Install Certora Prover + Java SDK 11 (requirement) $(check_installed certoraRun)" \
+        "2" "Install Echidna $(check_installed echidna)" \
+        "3" "Install Mythril $(check_installed myth)" \
+        "4" "Install Manticore $(check_installed manticore)" \
+        "5" "Install Medusa Fuzzer $(check_installed medusa)" \
+        "6" "Install 4nalyz3r $(check_installed analyze4)" \
+        "7" "Install Pyrometer $(check_installed pyrometer)" \
+        "8" "Install Brownie $(check_installed brownie)" \
+        "9" "Install Etheno $(check_installed etheno)" \
+        "10" "Install Noir (Nargo) $(check_installed nargo)" \
+        "11" "Install Circom $(check_installed circom)" \
         "12" "Install Embark" \
-        "13" "Install Python Developer Tools" \
-        "14" "Install VS Code Audit Extensions" \
+        "13" "Install Python Developer Tools" $(check_installed vyper) \
+        "14" "Install VS Code Audit Extensions" \ 
         2>&1 1>&3)
     exit_code=$?
     exec 3>&-
