@@ -28,7 +28,6 @@ commands=(
     "cargo-fmt -h"
     "clippy-driver -h"
 # installer
-    "vyper --version"
     "certoraRun --version"
     "manticore --version"
     "etheno --version"
@@ -45,7 +44,6 @@ commands=(
     "evmasm -h"
     "pytest -h"
     "echidna --version"
-    "medusa --version"
 )
 
 # Check each command
