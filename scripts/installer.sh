@@ -23,7 +23,6 @@
 DIALOG_CANCEL=1
 DIALOG_ESC=255
 
-
 display_help() {
     echo "Usage: $0 [-h]"
     echo
@@ -40,12 +39,12 @@ display_help() {
     echo "  7  Install Pyrometer"
     echo "  8  Install Brownie"
     echo "  9  Install Etheno"
-    echo "  10 Install Noir (Nargo)"
-    echo "  11 Install Circom"
-    echo "  12 Install Embark"
-    echo "  13 Install Python Developer Tools"
-    echo "  14 Install VS Code Audit Extensions"
-    echo "  15 Check installed versions"
+    echo "  10 "
+    echo "  11 Install Noir (Nargo)"
+    echo "  12 Install Circom"
+    echo "  13 Install Embark"
+    echo "  14 Install Python Developer Tools"
+    echo "  15 Install VS Code Audit Extensions"
     exit 0
 }
 
@@ -116,6 +115,7 @@ PYROMETER_OPTION=$(create_menu_option "pyrometer" "Install Pyrometer")
 BROWNIE_OPTION=$(create_menu_option "brownie" "Install Brownie")
 ETHENO_OPTION=$(create_menu_option "etheno" "Install Etheno")
 NOIR_OPTION=$(create_menu_option "nargo" "Install Noir (Nargo)")
+QUICKPOC_OPTION=$(create_menu_option "quickpoc" "Install quickpoc")
 CIRCOM_OPTION=$(create_menu_option "circom" "Install Circom")
 EMBARK_OPTION="Install Embark" # Assuming Embark has no command line tool to check
 PYTHON_DEV_OPTION=$(create_menu_option "vyper" "Install Python Developer Tools")
@@ -129,7 +129,7 @@ while true; do
         --title "Menu" \
         --clear \
         --cancel-label "Exit" \
-        --menu "Please select an option:" 20 80 15 \
+        --menu "Please select an option:" 20 80 16 \
         "1" "$CERTORA_OPTION" \
         "2" "$ECHIDNA_OPTION" \
         "3" "$MYTHRIL_OPTION" \
@@ -139,11 +139,12 @@ while true; do
         "7" "$PYROMETER_OPTION" \
         "8" "$BROWNIE_OPTION" \
         "9" "$ETHENO_OPTION" \
-        "10" "$NOIR_OPTION" \
-        "11" "$CIRCOM_OPTION" \
-        "12" "$EMBARK_OPTION" \
-        "13" "$PYTHON_DEV_OPTION" \
-        "14" "$VS_CODE_AUDIT_EXTENSIONS_OPTION" \
+        "10" "$QUICKPOC_OPTION" \
+        "11" "$NOIR_OPTION" \
+        "12" "$CIRCOM_OPTION" \
+        "13" "$EMBARK_OPTION" \
+        "14" "$PYTHON_DEV_OPTION" \
+        "15" "$VS_CODE_AUDIT_EXTENSIONS_OPTION" \
         2>&1 1>&3)
     exit_code=$?
     exec 3>&-
@@ -211,26 +212,31 @@ while true; do
             display_result "Result"
         ;;
         10)
+            run_with_progress "/home/whitehat/scripts/quickpoc_installer.sh" "quickpoc"
+            result="quickpoc_installer.sh installed successfully!"
+            display_result "Result"
+        ;;
+        11)
             run_with_progress "/home/whitehat/scripts/noir_setup.sh" "Noir (Nargo)"
             result="noir_setup.sh installed successfully!"
             display_result "Result"
         ;;
-        11)
+        12)
             run_with_progress "/home/whitehat/scripts/circom_setup.sh" "Circom"
             result="circom_setup.sh installed successfully!"
             display_result "Result"
         ;;
-        12)
+        13)
             run_with_progress "/home/whitehat/scripts/embark.sh" "Embark"
             result="embark.sh installed successfully!"
             display_result "Result"
         ;;
-        13)
+        14)
             run_with_progress "/home/whitehat/scripts/py_developer_setup.sh" "Python Developer Tools"
             result="py_developer_setup.sh installed successfully!"
             display_result "Result"
         ;;
-        14)
+        15)
             run_with_progress "/home/whitehat/scripts/vscode_audit_extensions.sh" "VS Code Audit Extensions"
             result="vscode_audit_extensions.sh installed successfully!"
             display_result "Result"
