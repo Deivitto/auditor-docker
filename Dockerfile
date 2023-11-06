@@ -13,10 +13,6 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN curl -L https://foundry.paradigm.xyz | bash
 ENV PATH="/root/.foundry/bin:${PATH}"
 RUN foundryup
-# Install heimdall using bifrost
-RUN curl -L http://get.heimdall.rs | bash && \
-    . /root/.cargo/env && \
-    /root/.bifrost/bin/bifrost
 
 # Now build the real docker image
 FROM ubuntu:jammy AS audit-toolbox
@@ -75,13 +71,6 @@ RUN add-apt-repository -y ppa:ethereum/ethereum && \
     python3.9-distutils && \
     rm -rf /var/lib/apt/lists/*
 
-# Install Julia
-RUN curl -fsSL https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.1-linux-x86_64.tar.gz -o julia.tar.gz && \
-    mkdir -p /opt/julia && \
-    tar -xzf julia.tar.gz -C /opt/julia --strip-components 1 && \
-    rm julia.tar.gz && \
-    ln -s /opt/julia/bin/julia /usr/local/bin/julia
-
 # Set up the user environment
 RUN useradd -m -G sudo whitehat && \
     echo 'whitehat ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
@@ -116,7 +105,7 @@ RUN . "$NVM_DIR/nvm.sh" && \
     # Update PATH for Yarn global binaries
     echo "export PATH=\"$(yarn global bin):$PATH\"" >> /home/whitehat/.bashrc
 
-# Install cargo, rust. Foundry and heimdall are now installed by multistage installation and copied at the end
+# Install cargo, rust. Foundry is now installed by multistage installation and copied at the end
 RUN curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y 
 
 # Create the scripts directory
@@ -198,14 +187,13 @@ RUN echo '# Point to the latest version of VS Code Remote server' >> ~/.bashrc &
 # Append the specified PATH to .bashrc. This is a hotfix. TODO: https://github.com/Deivitto/auditor-docker/issues/31
 RUN echo 'export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"' >> ~/.bashrc
 
-# Copy binaries and other assets from the builder. This copies foundry and heimdall binaries.
-COPY --from=builder /root/.bifrost/bin/* /home/whitehat/.bifrost/bin/
+# Copy binaries and other assets from the builder. This copies foundry binaries.
 COPY --from=builder /root/.foundry/bin/* /home/whitehat/.foundry/bin/
 
 # Give the new folders whitehat ownership
 USER root
-RUN chown -R whitehat:whitehat /home/whitehat/.bifrost/ /home/whitehat/.foundry/ && \
-    chmod -R 755 /home/whitehat/.bifrost/ /home/whitehat/.foundry/
+RUN chown -R whitehat:whitehat /home/whitehat/.foundry/ && \
+    chmod -R 755 /home/whitehat/.foundry/
 USER whitehat
 
 # ENTRYPOINT ["/bin/bash"] is used to set the default command for the container to start a new Bash shell.
