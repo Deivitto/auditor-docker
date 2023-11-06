@@ -22,18 +22,18 @@ Our beta version is up and running! I'm keen on keeping it fresh with the latest
 ## Basic build 
 Clone the repo and `cd` into it
 ```bash
-git clone https://github.com/Deivitto/auditor-docker.git && \
+git clone -b ZK https://github.com/Deivitto/auditor-docker.git && \
 cd auditor-docker
 ```
 
 Then, within the directory where the Dockerfile is
 ```bash
-docker build -t whitehat-machine .  
+docker build -t  whitehat-machine-zk .  
 ```
 
 Then just run
 ```bash
-docker run -it whitehat-machine 
+docker run -it  whitehat-machine-zk
 ```
 
 > If you are missing any package, run `add2` inside the toolbox
@@ -48,10 +48,10 @@ For other things related to Docker itself, such as sharing a folder, use [VSCode
 The fast command to install the machine is
 ```bash
 rm -rf auditor-docker && \
-git clone https://github.com/Deivitto/auditor-docker.git && \
+git clone -b ZK https://github.com/Deivitto/auditor-docker.git && \
 cd auditor-docker && \
-docker build -t whitehat-machine . && \
-docker run -it -d --name devops199 whitehat-machine
+docker build -t whitehat-machine-zk . && \
+docker run -it -d --name devops199-zk whitehat-machine-zk
 ```
 
 >NOTE: This command uses `-d` to run the docker machine in the background, with the objective of using the VSCode docker extension.
