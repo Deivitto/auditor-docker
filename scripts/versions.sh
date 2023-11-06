@@ -44,6 +44,7 @@ commands=(
     "evmasm -h"
     "pytest -h"
     "echidna --version"
+    "quickpoc -h"
 )
 
 # Check each command
