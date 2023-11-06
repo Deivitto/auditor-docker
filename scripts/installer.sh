@@ -12,11 +12,12 @@
 # "7" "Install Pyrometer" \
 # "8" "Install Brownie" \
 # "9" "Install Etheno" \
-# "10" "Install Noir (Nargo)" \
-# "11" "Install Circom" \
-# "12" "Install Embark" \
-# "13" "Install Python Developer Tools" \
-# "14" "Install VS Code Audit Extensions" \
+# "10" "Install quickpoc" \
+# "11" "Install Noir (Nargo)" \
+# "12" "Install Circom" \
+# "13" "Install Embark" \
+# "14" "Install Python Developer Tools" \
+# "15" "Install VS Code Audit Extensions" \
 
 ##
 
