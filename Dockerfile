@@ -92,8 +92,6 @@ RUN useradd -m -G sudo whitehat && \
 USER whitehat
 ENV HOME="/home/whitehat"
 ENV SCRIPTS="/home/whitehat/scripts"
-# ENV PATH="${PATH}:${HOME}/.local/bin:${HOME}/.vscode-server/bin/latest/bin"
-ENV HOME="/home/whitehat"
 ENV PATH="${HOME}/.bifrost/bin:${HOME}/.foundry/bin:${HOME}/.cargo/bin:${PATH}:${HOME}/.local/bin:${HOME}/.vscode-server/bin/latest/bin"
 WORKDIR /home/whitehat
 
@@ -156,7 +154,6 @@ RUN mv /home/whitehat/add2lbox /home/whitehat/.local/bin/
 SHELL ["/bin/bash", "-c"]
 
 USER root
-# RUN chown -R whitehat:whitehat /home/whitehat/
 # Move scripts inside the folder and give permissions
 COPY /scripts/*.sh /home/whitehat/scripts/
 COPY /scripts/readme.md /home/whitehat/scripts/readme.md
