@@ -81,8 +81,6 @@ RUN useradd -m -G sudo whitehat && \
 USER whitehat
 ENV HOME="/home/whitehat"
 ENV SCRIPTS="/home/whitehat/scripts"
-# ENV PATH="${PATH}:${HOME}/.local/bin:${HOME}/.vscode-server/bin/latest/bin"
-ENV HOME="/home/whitehat"
 ENV PATH="${HOME}/.bifrost/bin:${HOME}/.foundry/bin:${HOME}/.cargo/bin:${PATH}:${HOME}/.local/bin:${HOME}/.vscode-server/bin/latest/bin"
 WORKDIR /home/whitehat
 
@@ -144,6 +142,44 @@ RUN mv /home/whitehat/add2lbox /home/whitehat/.local/bin/
 # Set the default shell to bash
 SHELL ["/bin/bash", "-c"]
 
+# Install Julia
+USER root
+RUN curl -fsSL https://julialang-s3.julialang.org/bin/linux/x64/1.7/julia-1.7.1-linux-x86_64.tar.gz -o julia.tar.gz && \
+    mkdir -p /opt/julia && \
+    tar -xzf julia.tar.gz -C /opt/julia --strip-components 1 && \
+    rm julia.tar.gz && \
+    ln -s /opt/julia/bin/julia /usr/local/bin/julia
+
+# Switch back to whitehat user for Circom and Noir/Nargo installations
+USER whitehat
+
+# Install Circom
+RUN git clone https://github.com/iden3/circom.git .circom && \
+    cd .circom && \
+    /home/whitehat/.cargo/bin/cargo build --release && \
+    /home/whitehat/.cargo/bin/cargo install --path circom && \
+    cd .. && \
+    rm -rf .circom
+
+# Install snarkjs
+RUN /home/whitehat/.nvm/versions/node/$(node --version)/bin/npm install -g --omit=dev --global --force snarkjs 
+
+# Install Noir/Nargo
+RUN source /home/whitehat/.cargo/env && \
+    mkdir -p /home/whitehat/.nargo/bin && \
+    curl -o /home/whitehat/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -L https://github.com/noir-lang/noir/releases/download/v0.4.1/nargo-x86_64-unknown-linux-gnu.tar.gz && \
+    tar -xvf /home/whitehat/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -C /home/whitehat/.nargo/bin/ && \
+    rm /home/whitehat/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz
+
+# Append Nargo path to .bashrc
+RUN echo 'export PATH="$PATH:/home/whitehat/.nargo/bin"' >> /home/whitehat/.bashrc
+
+# Ensure the permissions are set correctly
+USER root
+RUN chown -R whitehat:whitehat /home/whitehat/.nargo/
+USER whitehat
+
+# End of ZK - Regular installation continue
 USER root
 # RUN chown -R whitehat:whitehat /home/whitehat/
 # Move scripts inside the folder and give permissions
