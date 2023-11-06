@@ -27,7 +27,7 @@ Packages managers:
 - Npm, nvm, yarn
 
 Security Tools installed:
-- forge, anvil, chisel, cast, slither, heimdall, solc-select
+- forge, halmos, slither, heimdall, anvil, chisel, cast, solc-select
 Security Tools in the installer:
 - echidna, medusa, myth, certoraRun, manticore, pyrometer, quickpoc, brownie, etheno, 4na4lyz3r (analyze4), ape...
 
