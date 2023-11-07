@@ -48,11 +48,6 @@ RUN apt-get update && \
     file \
     openssh-client \
     pandoc \
-    texlive-latex-base \
-    texlive-fonts-recommended \
-    texlive-fonts-extra \
-    texlive-latex-extra \
-    texlive-lang-english \
     ca-certificates \
     zip \
     unzip \
