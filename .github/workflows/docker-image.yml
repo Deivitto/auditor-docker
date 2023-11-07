@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: [main, ZK, Lightweight, Full]
+        branch: [main, ZK, Lightweight]
     steps:
     - name: Check out repository
       uses: actions/checkout@v3
