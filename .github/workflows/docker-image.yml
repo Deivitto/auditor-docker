@@ -2,7 +2,8 @@ name: Docker Image CI
 
 on:
   schedule:
-    - cron: '* * * * *' # Runs at midnight every day
+    - cron: '0 0 * * *' # Runs at midnight every day
+  workflow_dispatch:
 
 jobs:
   build:
