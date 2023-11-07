@@ -2,20 +2,18 @@ name: Docker Image CI
 
 on:
   schedule:
-    # Runs at every minute for testing purposes, change to '0 * * * *' for every hour
-    - cron: '* * * * *'
+    - cron: '0 0 * * *' # Runs at midnight every day
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        branch: [main, ZK, Lightweight, Full]
     steps:
-    - name: Check out ZK branch
+    - name: Check out repository
       uses: actions/checkout@v3
       with:
-        ref: ZK
-        # This will check out the ZK branch specifically
-    
+        ref: ${{ matrix.branch }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      # This command builds the Docker image using the Dockerfile in your repository and tags it with the current timestamp
+      run: docker build . --file Dockerfile --tag my-image-name:${{ matrix.branch }}-$(date +%s)
