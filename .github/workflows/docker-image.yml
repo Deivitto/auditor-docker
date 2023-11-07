@@ -18,4 +18,5 @@ jobs:
       with:
           ref: ZK
           # This will check out the ZK branch specifically
-          run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
