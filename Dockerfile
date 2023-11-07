@@ -92,6 +92,8 @@ RUN . "$NVM_DIR/nvm.sh" && \
     echo "PATH=\"/home/whitehat/.nvm/versions/node/$node_version/bin:${PATH}\"" >> /home/whitehat/.bashrc && \
     . /home/whitehat/.bashrc && \
     npm install --omit=dev --global --force ganache truffle pnpm && \
+    # Install snarkjs
+    /home/whitehat/.nvm/versions/node/$node_version/bin/npm install -g --omit=dev --global --force snarkjs && \
     # Install Yarn
     . "$NVM_DIR/nvm.sh" && \
     curl -o- -L https://yarnpkg.com/install.sh | bash && \
@@ -155,9 +157,6 @@ RUN git clone https://github.com/iden3/circom.git .circom && \
     /home/whitehat/.cargo/bin/cargo install --path circom && \
     cd .. && \
     rm -rf .circom
-
-# Install snarkjs
-RUN /home/whitehat/.nvm/versions/node/$(node --version)/bin/npm install -g --omit=dev --global --force snarkjs 
 
 # Install Noir/Nargo
 RUN source /home/whitehat/.cargo/env && \
