@@ -122,7 +122,7 @@ RUN python3.9 -m pip install --no-cache-dir \
     # Clone the slitherin repository and run the setup script
     git clone https://github.com/pessimistic-io/slitherin.git ~/.slitherin && \
     cd ~/.slitherin && \
-    python3.9 setup.py develop --user 
+    python3.9 setup.py develop --user || true
 
 #Vim Solidity plugins + pessimistic io slitherin
 RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
