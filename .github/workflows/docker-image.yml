@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  schedule:
+    # Runs at every hour
+    - cron: '* * * * *'
+
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      with:
+          ref: ZK
+          # This will check out the ZK branch specifically
+          run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
