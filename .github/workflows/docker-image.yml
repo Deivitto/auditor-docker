@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs at midnight every day
+    - cron: '* * * * *' # Runs at midnight every day
 
 jobs:
   build:
