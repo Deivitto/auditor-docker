@@ -186,6 +186,7 @@ A set of most of the famous tools in the ecosystem by different authors.
 - **Ganache** and **Truffle**: Tools such as running a personal blockchain, development environment, testing framework, and asset pipeline for Ethereum. Author: Truffle Suite.
 - **Pyrometer**: is a mix of symbolic execution, abstract interpretation, and static analysis. Author: nascentxyz
 - **Brownie**: Python-based development and testing framework for smart contracts targeting the Ethereum Virtual Machine.
+- **QuickPoc**: Write fast proof of concepts for bug bounties. Author: Zachobront
 
 ### Node.js Development:
 - **NVM**: Node Version Manager to switch between different Node.js versions.
