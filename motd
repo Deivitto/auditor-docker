@@ -1,3 +1,7 @@
+Created & maintained by Deivitto
+
+Collaborators & testers: misirov, luksgrin, 
+Thanks kiki_dev & nisedo for testing MacOS and helping me debugging
 
 AUDITOR TOOLBOX
 https://github.com/Deivitto/auditor-docker/
@@ -14,25 +18,21 @@ https://github.com/Deivitto/auditor-docker/
 #               |_|\___/ \___/|_|_.__/\___/_/\_\ 
 #                                                
 
-Created by Deivitto
-Collaborators: misirov, luksgrin
+Languages installed:
+- Python3.9, Solidity, Rust, Julia
+Languages in the installer:
+- Vyper, Noir, Circom
 
-Security Tools and Resources Installed:
+Packages managers:
+- Npm, nvm, yarn
 
-- Foundry: forge
-- Foundry Update: foundryup
-- Slither: slither
-- Echidna: echidna
-- Medusa: medusa
-- Mythril: myth
-- Halmos: halmos
-- Heimdall: heimdall
-- Certora Prover: certoraRun
-- Set Certora Key: certoraKey key
-- Manticore: manticore
-- Solc-select: solc-select
-- Open last solity lang doc: solc-docs --book
-- Create an issue for an audit: issue
+Security Tools installed:
+- forge, halmos, slither, heimdall, anvil, chisel, cast, solc-select
+Security Tools in the installer:
+- echidna, medusa, myth, certoraRun, manticore, pyrometer, quickpoc, brownie, etheno, 4na4lyz3r (analyze4), ape...
 
-Use add2 or add2lbox to quick install auditor packages
+Hints:
+- Use issue to quickly write issues with different contests templates (c4, sherlock...).
+- Use add2-update to sync scripts and templates with the last version.
+- Use add2 or add2lbox to use the installer and get some packages.
 
