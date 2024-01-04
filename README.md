@@ -239,3 +239,4 @@ For general information, go to [Troubleshooting](https://github.com/Deivitto/aud
 - [Parent system out of time](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#parent-system-out-of-time)
 - [`code` not working](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#code-not-working)
 - [`Mac OS` Failed on building](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting#mac-os-failed-on-building)
+- [`solc-select` not working on MacOS](https://github.com/Deivitto/auditor-docker/wiki/Troubleshooting/_edit#mac-os-not-working-with-solc-select)
