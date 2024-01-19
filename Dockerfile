@@ -28,6 +28,7 @@ LABEL org.opencontainers.image.description="Audit Toolbox for Ethereum Smart Con
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     build-essential \
+    cloc \
     curl \
     git \
     vim \
