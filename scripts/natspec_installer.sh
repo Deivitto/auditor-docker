@@ -3,6 +3,7 @@
 # Define the destination of the script and the symbolic link
 script_path="$HOME/.local/share/natsmell.sh"
 link_path="$HOME/.local/bin/natsmell"
+helper_path="$HOME/.local/bin/natsmell_helper.py"
 
 # Create the bash script with help guide
 cat << 'EOF' > "$script_path"
@@ -71,6 +72,8 @@ if ! yarn natspec-smells > natsmells.md 2>&1; then
 else
    echo "Smelling for missing natspec..."
    echo "Smells stored at natsmells.md"
+   cat natsmells.md | python3.9 ~/.local/bin/natsmell_helper.py > natsmell.json
+   echo "Stored smells parsed at natsmell.json"
 fi
 
 # Create natspec-smells.config.js
@@ -90,6 +93,88 @@ CONFIG
 if [ -n "$editor" ]; then
   $editor natspec-smells.config.js
 fi
+
+EOF
+# Create a helper python script to format in json
+cat << 'EOF' > "$helper_path"
+import sys, json
+
+def _format_list(input_list):
+    output_dict = {}
+
+    temp_list = []
+
+    for item in input_list:
+        if item != '':
+            temp_list.append(item)
+        else:
+            if temp_list:
+                output_dict[temp_list[0]] = {
+                    "function": temp_list[1],
+                    "flags": list(map(
+                        lambda x: x.strip(),
+                        temp_list[2:]
+                    ))
+                }
+
+                temp_list = []
+
+    if temp_list:
+        output_dict[temp_list[0]] = {
+            "source": temp_list[0],
+            "function": temp_list[1],
+            "flags": temp_list[2:]
+        }
+
+    return output_dict
+
+def _aggregate_files(input_dict):
+
+    output_dict = {}
+
+    files = sorted(list(set(map(
+        lambda x: x.split(":")[0],
+        input_dict.keys()
+    ))))
+
+    for file in files:
+
+        temp_dict = {}
+
+        file_and_lines = filter(
+            lambda x: x.split(":")[0] == file,
+            input_dict.keys()
+        )
+
+        for fileline in file_and_lines:
+            temp_dict[f'L{fileline.split(":")[1]}'] = input_dict[fileline]
+        
+        output_dict[file] = temp_dict
+        temp_dict = {}
+
+    return output_dict
+    
+
+def format_output(file_contents):
+
+    data = {}
+    data["execution metadata"] = {
+        "yarn version": file_contents[0],
+        "command": file_contents[1],
+        "finalized": file_contents[-2] 
+    }
+    data["output"] = _aggregate_files(
+        _format_list(file_contents[2:-2])
+    )
+
+    print(
+        json.dumps(data, indent=4)
+    )
+
+if __name__ == "__main__":
+    format_output(
+        sys.stdin.read().split("\n")
+    )
 EOF
 
 # Make the bash script executable
