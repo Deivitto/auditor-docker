@@ -2,7 +2,7 @@
 
 # Download the Source Code
 echo "Downloading Medusa..."
-wget https://github.com/crytic/medusa/releases/download/v0.1.1/medusa-linux-x64.zip -O medusa.zip
+wget https://github.com/crytic/medusa/releases/download/v0.1.3/medusa-linux-x64.zip -O medusa.zip
 
 # Extract the Downloaded Archive
 echo "Extracting Medusa..."
