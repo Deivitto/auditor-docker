@@ -25,3 +25,4 @@ echo "Cleaning up..."
 rm medusa.tar.gz
 
 echo "Medusa installation complete! You can now use the 'medusa' command from the terminal."
+
