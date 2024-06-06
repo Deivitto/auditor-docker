@@ -1,4 +1,7 @@
 # Auditor-Toolbox
+![square](https://github.com/Deivitto/auditor-docker/assets/26606295/0aa8d6b7-5420-41e1-aa0d-d2b1042d2d3b)
+
+
 ## Intro
 The Auditor Toolbox essential goal is to pack all the essential auditor tools into a single Docker Image! 
 
