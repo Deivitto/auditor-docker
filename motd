@@ -20,6 +20,7 @@ https://github.com/Deivitto/auditor-docker/
 
 Languages installed:
 - Python3.9, Solidity, Rust, Julia
+- Solana support: Solana CLI, Anchor (thanks charlesCheerful)
 Languages in the installer:
 - Vyper, Noir, Circom
 
