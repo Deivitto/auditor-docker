@@ -48,6 +48,7 @@ commands=(
 )
 
 # Check each command
+failures=0
 for cmd in "${commands[@]}"; do
     echo "Testing $cmd..."
     $cmd > /dev/null 2>&1
@@ -55,5 +56,8 @@ for cmd in "${commands[@]}"; do
         echo "✅ $cmd is available."
     else
         echo "❌ $cmd is NOT available."
+        failures=$((failures + 1))
     fi
 done
+
+exit "$failures"

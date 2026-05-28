@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+
 # Installs Noir in .nargo folder
 source ~/.cargo/env && \
 # Creates the bin folder
@@ -9,5 +11,6 @@ curl -o $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -L https://github
 tar -xvf $HOME/.nargo/bin/nargo-x86_64-unknown-linux-gnu.tar.gz -C $HOME/.nargo/bin/ && \
 # Save into the path
 echo -e "\nexport PATH=$PATH:$HOME/.nargo/bin" >> ~/.bashrc && \
+ln -sf $HOME/.nargo/bin/nargo $HOME/.local/bin/nargo && \
 # Source to use nargo command
 source ~/.bashrc
