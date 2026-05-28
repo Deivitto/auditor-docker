@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+
 # Installing echidna
 echo "[$(date)] Install echidna"
 # Getting bin version (THIS VERSION IS HARDCODED)
@@ -6,7 +8,6 @@ wget https://github.com/crytic/echidna/releases/download/v2.3.0/echidna-2.3.0-x8
 # Uncompressing
 tar -xvkf echidna.tar.gz
 # Moving to binaries folder for the access
-sudo mv echidna /usr/bin/
+sudo mv -f echidna /usr/bin/
 # Removing local compressed file
 rm echidna.tar.gz
-

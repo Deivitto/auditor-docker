@@ -1,8 +1,9 @@
 #!/bin/bash
+set -euo pipefail
 
 # Remove old version
 echo "Removing old version of Medusa..."
-sudo rm /usr/local/bin/medusa
+sudo rm -f /usr/local/bin/medusa
 
 # Download the Source Code
 echo "Downloading Medusa..."
@@ -25,4 +26,3 @@ echo "Cleaning up..."
 rm medusa.tar.gz
 
 echo "Medusa installation complete! You can now use the 'medusa' command from the terminal."
-

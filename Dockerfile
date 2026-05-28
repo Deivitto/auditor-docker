@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.3
 # First stage for some cargo packages
 # --- BUILDER STAGE ---
-FROM ubuntu:jammy as builder
+FROM --platform=linux/amd64 ubuntu:jammy as builder
 
 # Install necessary tools and dependencies.
 RUN apt-get update && apt-get install -y curl git build-essential pkg-config libssl-dev && rm -rf /var/lib/apt/lists/*
@@ -19,7 +19,7 @@ RUN curl -L http://get.heimdall.rs | bash && \
     /root/.bifrost/bin/bifrost
 
 # Now build the real docker image
-FROM ubuntu:jammy AS audit-toolbox
+FROM --platform=linux/amd64 ubuntu:jammy AS audit-toolbox
 
 LABEL org.opencontainers.image.authors="Deivitto"
 LABEL org.opencontainers.image.description="Audit Toolbox for Ethereum Smart Contracts"
@@ -37,6 +37,7 @@ RUN apt-get update && \
     libz3-dev \
     ripgrep \
     gawk \
+    jq \
     libssl-dev \
     sudo \
     wget \
@@ -128,13 +129,14 @@ RUN chmod +x /home/whitehat/add2lbox
 RUN python3.9 -m pip install --no-cache-dir pip setuptools wheel
 # Install python tools
 RUN python3.9 -m pip install --no-cache-dir \
+    z3-solver==4.13.0.0 \
     solc-select \
-    slither-analyzer pandocfilters pygments PyGithub \ 
+    slither-analyzer pandocfilters pygments PyGithub \
     halmos && \
     # Clone the slitherin repository and run the setup script
-    git clone https://github.com/pessimistic-io/slitherin.git ~/.slitherin && \
+    (git clone https://github.com/pessimistic-io/slitherin.git ~/.slitherin && \
     cd ~/.slitherin && \
-    python3.9 setup.py develop --user || true
+    python3.9 setup.py develop --user || true)
 
 #Vim Solidity plugins + pessimistic io slitherin
 RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
@@ -166,7 +168,7 @@ RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
 
 # Install pip for Python 3.9 and set it as the default
-RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9 && \
+RUN curl https://bootstrap.pypa.io/pip/3.9/get-pip.py | python3.9 && \
     update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.9 1
 
 USER whitehat
@@ -190,6 +192,12 @@ RUN echo '# Point to the latest version of VS Code Remote server' >> ~/.bashrc &
 
 # Append the specified PATH to .bashrc. This is a hotfix. TODO: https://github.com/Deivitto/auditor-docker/issues/31
 RUN echo 'export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"' >> ~/.bashrc
+
+# Install the optional audit tools exposed by the add2 installer so the image is fully usable out of the box.
+RUN export NVM_DIR="$HOME/.nvm" && \
+    . "$NVM_DIR/nvm.sh" && \
+    export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin" && \
+    /home/whitehat/scripts/run_all_scripts.sh
 
 # Copy binaries and other assets from the builder. This copies foundry and heimdall binaries.
 COPY --from=builder /root/.bifrost/bin/* /home/whitehat/.bifrost/bin/

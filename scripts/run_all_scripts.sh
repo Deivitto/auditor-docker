@@ -1,13 +1,14 @@
 #!/bin/bash
+set -euo pipefail
 
-# Ensure the script stops if any command fails
-set -e
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 echo "Executing all scripts..."
 
 ~/scripts/analyzer_installer.sh
 ~/scripts/brownie.sh
-~/scripts/certora_key_setup.sh
 ~/scripts/certora_setup.sh
 ~/scripts/circom_setup.sh
 ~/scripts/etheno.sh
@@ -17,7 +18,7 @@ echo "Executing all scripts..."
 ~/scripts/noir_setup.sh
 ~/scripts/pyrometer_installer.sh
 ~/scripts/py_developer_setup.sh
-~/scripts/embark.sh
+~/scripts/quickpoc_installer.sh
 ~/scripts/echidna_installer.sh
 
 echo "All scripts executed successfully!"

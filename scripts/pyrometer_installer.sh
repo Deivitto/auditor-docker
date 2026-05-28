@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Ensure the CARGO_HOME/bin is in your PATH.
 if [[ ":$PATH:" != *":$HOME/.cargo/bin:"* ]]; then
@@ -11,18 +12,13 @@ fi
 echo "Cloning the Pyrometer repository..."
 cd $HOME
 if [ -d ".pyrometer" ]; then
-    echo "Directory .pyrometer already exists. Please remove or rename it and try again."
-    exit 1
+    rm -rf .pyrometer
 fi
 git clone https://github.com/nascentxyz/pyrometer .pyrometer
 
-# Navigate to the cli directory
-echo "Navigating to the Pyrometer CLI directory..."
-cd .pyrometer/cli
-
 # Install using cargo
 echo "Installing Pyrometer using Cargo..."
-cargo install --path . --locked
+cargo install --path .pyrometer/crates/cli --locked
 
 # Inform the user about the next steps
 echo "Pyrometer installation complete!"

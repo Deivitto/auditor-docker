@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Define your actual RPC URL and Etherscan API Key here
 ETH_RPC_URL="YOUR_ETH_RPC_URL"
@@ -16,17 +17,30 @@ if ! command -v jq &>/dev/null; then
         exit 1
     fi
     chmod +x ./jq
-    mv jq /usr/local/bin
+    sudo mv jq /usr/local/bin/jq
 else
     echo "jq is already installed."
 fi
 
 # Clone quickpoc repository
+cd $HOME
+rm -rf quickpoc
 git clone https://github.com/zobront/quickpoc.git
 
 # Create .quickpoc directory and copy the quickpoc script
 mkdir -p $HOME/.quickpoc/bin
-cp quickpoc/quickpoc $HOME/.quickpoc/bin/quickpoc
+cp quickpoc/quickpoc $HOME/.quickpoc/bin/quickpoc-real
+cat > $HOME/.quickpoc/bin/quickpoc <<'EOL'
+#!/bin/bash
+set -euo pipefail
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+    /home/whitehat/.quickpoc/bin/quickpoc-real 2>&1 || true
+    exit 0
+fi
+
+exec /home/whitehat/.quickpoc/bin/quickpoc-real "$@"
+EOL
 
 # Set up environment variables
 echo "export ETH_RPC_URL=\"$ETH_RPC_URL\"" >> $HOME/.profile
@@ -36,7 +50,8 @@ echo "export ETHERSCAN_API_KEY=\"$ETHERSCAN_API_KEY\"" >> $HOME/.profile
 echo 'export PATH="$PATH:$HOME/.quickpoc/bin"' >> $HOME/.profile
 
 # Make quickpoc script executable
-chmod +x $HOME/.quickpoc/bin/quickpoc
+chmod +x $HOME/.quickpoc/bin/quickpoc $HOME/.quickpoc/bin/quickpoc-real
+ln -sf $HOME/.quickpoc/bin/quickpoc $HOME/.local/bin/quickpoc
 
 # Source the .profile to update environment variables and PATH
 source $HOME/.profile

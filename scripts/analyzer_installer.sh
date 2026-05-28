@@ -1,8 +1,10 @@
 #!/bin/bash
+set -euo pipefail
 
 # Step 1: Clone the repository and install its dependencies
 echo "Cloning 4naly3er repository..."
 cd $HOME
+rm -rf .4nalyz3r
 git clone https://github.com/Picodes/4naly3er .4nalyz3r
 
 echo "Installing dependencies..."
@@ -110,6 +112,6 @@ EOL
 # Step 3: Create a symbolic link in ~/.local/bin
 
 echo "Creating symbolic link in ~/.local/bin for global access..."
-ln -s "${SCRIPT_PATH}" ~/.local/bin/analyze4
+ln -sf "${SCRIPT_PATH}" ~/.local/bin/analyze4
 
 echo "Installation complete! You can now use analyze4 command anywhere in your system."
