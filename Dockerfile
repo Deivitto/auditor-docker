@@ -128,13 +128,14 @@ RUN chmod +x /home/whitehat/add2lbox
 RUN python3.9 -m pip install --no-cache-dir pip setuptools wheel
 # Install python tools
 RUN python3.9 -m pip install --no-cache-dir \
+    z3-solver==4.13.0.0 \
     solc-select \
-    slither-analyzer pandocfilters pygments PyGithub \ 
+    slither-analyzer pandocfilters pygments PyGithub \
     halmos && \
     # Clone the slitherin repository and run the setup script
-    git clone https://github.com/pessimistic-io/slitherin.git ~/.slitherin && \
+    (git clone https://github.com/pessimistic-io/slitherin.git ~/.slitherin && \
     cd ~/.slitherin && \
-    python3.9 setup.py develop --user || true
+    python3.9 setup.py develop --user || true)
 
 #Vim Solidity plugins + pessimistic io slitherin
 RUN git clone https://github.com/tomlion/vim-solidity.git ~/.vim/pack/plugins/start/vim-solidity 
@@ -166,7 +167,7 @@ RUN echo -e '\ncat /etc/motd\n' >> /etc/bash.bashrc
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
 
 # Install pip for Python 3.9 and set it as the default
-RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9 && \
+RUN curl https://bootstrap.pypa.io/pip/3.9/get-pip.py | python3.9 && \
     update-alternatives --install /usr/bin/pip pip /usr/local/bin/pip3.9 1
 
 USER whitehat
